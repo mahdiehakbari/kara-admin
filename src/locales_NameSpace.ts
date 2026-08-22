@@ -1,5 +1,7 @@
 export const localesNS = [
   'login',
+  'sidebar',
+  'home',
 ] as const;
 export type LocaleNS = (typeof localesNS)[number];
 

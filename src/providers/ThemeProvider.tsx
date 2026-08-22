@@ -15,7 +15,7 @@ interface ContextType {
 }
 
 const ThemeContext = createContext<ContextType>({
-  theme: 'light',
+  theme: 'dark',
   setTheme: () => {},
 });
 
@@ -31,6 +31,7 @@ export function ThemeProvider({ children, defaultTheme }: Props) {
       root.classList.remove('dark');
     }
   };
+
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('dentalit-theme') as Theme | null;

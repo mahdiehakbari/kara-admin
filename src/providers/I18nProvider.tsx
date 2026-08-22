@@ -1,7 +1,7 @@
 'use client';
 
-import { initI18n } from '@/i18n';
 import { ReactNode, useEffect, useState } from 'react';
+import { initI18n } from '@/i18n';
 
 interface I18nProviderProps {
   children: ReactNode;

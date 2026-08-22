@@ -2,10 +2,9 @@
 module.exports = {
   darkMode: 'class',
   content: [
-    './app/**/*.{js,ts,jsx,tsx}',
-    './components/**/*.{js,ts,jsx,tsx}',
-    './features/**/*.{js,ts,jsx,tsx}',
-    './src/**/*.{js,ts,jsx,tsx}',
+    './src/app/**/*.{js,ts,jsx,tsx}',
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/features/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -20,7 +19,6 @@ module.exports = {
         surface: 'var(--surface)',
 
         /* Existing tokens — now pointing to brand vars */
-        'second-blue': 'var(--second-blue)',
         'second-primary': 'var(--second-primary)',
         'second-primary-hover': 'var(--second-primary-hover)',
         'second-primary-disabled': 'var(--second-primary-disabled)',
@@ -50,15 +48,6 @@ module.exports = {
         'block-color': 'var(--block-color)',
         'second-light-blue': 'var(--second-light-blue)',
         'green-color': 'var(--green-color)',
-      },
-      borderRadius: {
-        btn: 'var(--radius-btn)',
-        card: 'var(--radius-card)',
-        input: 'var(--radius-input)',
-      },
-      fontFamily: {
-        fa: ['YekanBakh', 'VazirMatn', 'Vazirmatn', 'sans-serif'],
-        en: ['Sarabun', 'poppins', 'sans-serif'],
       },
     },
   },

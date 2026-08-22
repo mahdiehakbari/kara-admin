@@ -3,17 +3,22 @@ import './globals.css';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AuthChecker } from '@/features';
+
 import I18nProvider from '@/providers/I18nProvider';
 import { cookies } from 'next/headers';
 import { ThemeProvider } from '@/providers/ThemeProvider';
+import { AuthChecker, LayoutShell } from '@/features';
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const userType = cookieStore.get('userType')?.value;
 
-  const siteTitle = 'سامانه معرف مشتری';
-
+  const siteTitle =
+    userType === 'Admin'
+      ? 'پنل مدیریت دنتالیت'
+      : userType === 'Financial'
+        ? 'پنل مدیریت مالی'
+        : 'پنل معرف مشتری';
   return {
     metadataBase: new URL('https://example.com'),
     title: {
@@ -30,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     generator: 'Next.js',
     keywords: [
       'real estate',
-      'سامانه معرف مشتری',
+      'پنل مدیریت مالی',
       'dashboard',
       'nextjs',
       'tailwind',
@@ -69,7 +74,7 @@ export default function RootLayout({
         <I18nProvider>
           <ThemeProvider defaultTheme='dark'>
             <AuthChecker />
-            {/* <LayoutShell>{children}</LayoutShell> */}
+            <LayoutShell>{children}</LayoutShell>
 
             <ToastContainer
               position='top-center'

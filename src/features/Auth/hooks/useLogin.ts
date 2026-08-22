@@ -37,7 +37,7 @@ export function useLogin() {
       localStorage.setItem('userType', resp.data.user.userType);
       Cookies.set('userType', resp.data.user.userType);
 
-      router.push('/dashboard');
+      router.push('/panel');
     } catch (err) {
       toast.error(t('login:invalid_data'));
     } finally {
