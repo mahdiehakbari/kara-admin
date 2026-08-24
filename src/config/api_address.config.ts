@@ -7,3 +7,4 @@ if (!BASE_URL) {
 export { BASE_URL };
 
 export const API_LOGIN = `${BASE_URL}/UnifiedAuth/login`;
+export const API_ADD_CUSTOMER_INTRODUCTION = `${BASE_URL}/CustomerIntroducerCommand/create`;

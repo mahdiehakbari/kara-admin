@@ -287,7 +287,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
           <nav className='flex flex-col gap-2 flex-1 overflow-y-auto'>
             {(userType === 'Financial'
               ? getFinancialSideBarItems()
-              : userType === 'Introducer'
+              : userType === 'CustomerIntroducer'
                 ? getDentistrySideBarItems()
                 : []
             ).map((item) => {
@@ -309,7 +309,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
                     if (!isActive) {
                       (
                         e.currentTarget as HTMLAnchorElement
-                      ).style.backgroundColor = 'var(--sidebar-hover-bg)';
+                      ).style.backgroundColor = 'var(--sidebar-bg)';
                     }
                   }}
                   onMouseLeave={(e) => {
@@ -338,11 +338,11 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
               <div className='flex items-center gap-3'>
                 {isDark ? (
                   <span className='text-sm font-medium text-primary '>
-                    {t('dashboard:lightTheme')}
+                    {t('home:lightTheme')}
                   </span>
                 ) : (
                   <span className='text-sm font-medium '>
-                    {t('dashboard:darkTheme')}
+                    {t('home:darkTheme')}
                   </span>
                 )}
               </div>
@@ -360,7 +360,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             transition-all duration-200'
             >
               <LogOut className='w-5 h-5' />
-              <span className='text-sm font-bold'>{t('home:logout')}</span>
+              <span className='text-sm font-bold'>{t('home:log_out')}</span>
             </Button>
           </div>
         </div>

@@ -7,14 +7,14 @@ const Dashboard = () => {
 
   return (
     <div>
-
-      {(userType === 'Introducer' || userType === 'Admin') && (
+      {(userType === 'CustomerIntroducer' || userType === 'Admin') && (
         <div className='w-full h-screen flex items-center justify-center'>
           <img
-            src={'/assets/icons/dentalSociety/Kara-Logo.png'
-              // userType == 'Introducer' &&
-              // userInfo?.introducer?.introducerLogoImageFilePath !== ''
-              //   ? `https://files.dentalit.ir/Images/IntroducerLogoImages/${userInfo?.introducer?.introducerLogoImageFilePath}`
+            src={
+              '/assets/icons/dentalSociety/Kara-Logo.png'
+              // userType == 'CustomerIntroducer' &&
+              // userInfo?.CustomerIntroducer?.CustomerIntroducerLogoImageFilePath !== ''
+              //   ? `https://files.dentalit.ir/Images/CustomerIntroducerLogoImages/${userInfo?.CustomerIntroducer?.CustomerIntroducerLogoImageFilePath}`
               //   : '/assets/icons/dentalSociety/Kara-Logo.png'
             }
             alt='dental-society-logo'

@@ -1,6 +1,9 @@
 {
     "log_out":"خروج",
     "lightTheme": "تم روشن",
-    "darkTheme": "تم تاریک"
-    
+    "darkTheme": "تم تاریک",
+     "field_required": "این فیلد الزامی است",
+    "only_numbers_allowed": "فقط عدد مجاز است",
+    "mobile_must_be_11_digits": "شماره موبایل باید 11 رقمی باشد",
+    "national_code_invalid": "کد ملی نامعتبر است"
 }

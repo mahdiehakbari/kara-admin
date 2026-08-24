@@ -32,7 +32,7 @@ export default function LoginForm() {
       </div>
 
       <h2 className='text-[18px] font-bold text-center mb-2 text-(--text-muted) transition-colors'>
-        {t('login:login_admin_panel')}
+        پنل مدیریت معرف مشتری
       </h2>
       <p className=' text-center mb-8 font-medium text-[14px] transition-colors'>
         {t('login:user_name_pass')}

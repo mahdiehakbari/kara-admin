@@ -42,7 +42,7 @@ export const getDentistrySideBar = () => [
 export const getDentistrySideBarItems = () => [
   {
     label: i18n.t('sidebar:customer_definition'),
-    href: '/',
+    href: '/panel/customer-introduction',
     icon: UserPlus,
   },
   {

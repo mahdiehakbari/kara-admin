@@ -75,7 +75,9 @@ export function AppSidebar() {
               : t('sidebar:customer_referral_panel')}
         </h2>
 
-        {(userType == 'Financial' || userType == 'Admin') && (
+        {(userType == 'Financial' ||
+          userType == 'Admin' ||
+          userType == 'CustomerIntroducer') && (
           <div className='flex items-center gap-4 px-2'>
             <div className='relative'>
               <img
@@ -245,7 +247,7 @@ export function AppSidebar() {
 
         {(userType === 'Financial'
           ? getFinancialSideBarItems()
-          : userType === 'Introducer'
+          : userType === 'CustomerIntroducer'
             ? getDentistrySideBarItems()
             : []
         ).map((item) => {
@@ -267,7 +269,7 @@ export function AppSidebar() {
               onMouseEnter={(e) => {
                 if (!isActive) {
                   (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                    'var(--sidebar-hover-bg)';
+                    'var(--sidebar-bg)';
                 }
               }}
               onMouseLeave={(e) => {
