@@ -1,0 +1,21 @@
+{
+  "exportExcelPdf": "خروجی اکسل/PDF",
+  "customer_list": "لیست مشتریان معرف",
+  "row": "ردیف",
+  "first_name": "نام",
+  "last_name": "نام خانوادگی",
+  "mobile": "موبایل",
+  "introduction_date": "تاریخ معرفی",
+  "expiration_date": "تاریخ اتمام مهلت",
+  "status": "وضعیت",
+  "actions": "عملیات",
+  "delete": "حذف",
+  "introduced_customers": "مشتریان معرفی شده",
+  "customer_status": "وضعیت مشتریان",
+  "initial_registration": "ثبت اولیه",
+  "expired": "منقضی شده",
+  "deleted": "حذف شده",
+  "customer": "مشتری",
+  "new_customer_introduction": "معرفی مشتری جدید",
+  "remaining_introduction_capacity": "ظرفیت باقی‌مانده معرفی مشتری"
+}

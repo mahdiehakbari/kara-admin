@@ -47,7 +47,7 @@ export const getDentistrySideBarItems = () => [
   },
   {
     label: i18n.t('sidebar:customer_status_list'),
-    href: '/',
+    href: '/panel/customer-list',
     icon: UsersRound,
   },
 ];

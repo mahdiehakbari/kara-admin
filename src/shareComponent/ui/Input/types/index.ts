@@ -1,4 +1,3 @@
-import { ISkill } from '@/store/Dentists/types';
 import {
   FieldErrors,
   FieldPath,
@@ -6,6 +5,12 @@ import {
   RegisterOptions,
   UseFormRegister,
 } from 'react-hook-form';
+
+export interface ISkill {
+  skillId: string;
+  description: string;
+}
+
 interface IAddress {
   id: string;
   cityId: string;

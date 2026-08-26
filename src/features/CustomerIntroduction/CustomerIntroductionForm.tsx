@@ -12,13 +12,11 @@ import { CustomerIntroductionHeader } from './CustomerIntroductionHeader';
 import { toast } from 'react-toastify';
 
 
-const CustomerIntroductionForm = () => {
-    const { t } = useTranslation();
-    const rules = validationRules(t);
-  const {
-    isLoading,
-    submitCustomerIntroduction,
-  } = useCustomerIntroductionStore();
+const CustomerIntroductionForm = ({ name }: { name?: string }) => {
+  const { t } = useTranslation();
+  const rules = validationRules(t);
+  const { isLoading, submitCustomerIntroduction } =
+    useCustomerIntroductionStore();
 
   const {
     register,
@@ -30,80 +28,68 @@ const CustomerIntroductionForm = () => {
     mode: 'onChange',
   });
 
-  const onSubmit = async (
-    values: CustomerIntroductionFormValues
-  ) => {
+  const onSubmit = async (values: CustomerIntroductionFormValues) => {
     const success = await submitCustomerIntroduction(values);
 
     if (success) {
       reset(CUSTOMER_INTRODUCTION_DEFAULT_VALUES);
-      toast.success('اطلاعات مشتری با موفقیت ثبت شد.')
+      toast.success('اطلاعات مشتری با موفقیت ثبت شد.');
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="max-w-3xl w-full"
-      dir="rtl"
+      className='max-w-3xl w-full'
+      dir='rtl'
     >
-      <div className="overflow-hidden rounded-2xl border border-(--border-color) bg-(--surface) shadow-sm  p-6">
+      <div
+        className={`overflow-hidden rounded-2xl ${name !== 'addCustomer' ? 'border border-(--border-color) ' : ''} bg-(--surface) shadow-sm p-6`}
+      >
         <CustomerIntroductionHeader />
 
-        {/* Form Fields */}
-        <div className="p-6">
-          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                 <Input
-            label="نام"
-            name="firstName"
-            register={register}
-            errors={errors}
-            textError={rules.firstName.required}
-            type="text"
-            rules={rules.firstName}
+        <div className='p-6'>
+          <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
+            <Input
+              label='نام'
+              name='firstName'
+              register={register}
+              errors={errors}
+              textError={rules.firstName.required}
+              type='text'
+              rules={rules.firstName}
             />
 
             <Input
-            label="نام خانوادگی"
-            name="lastName"
-            register={register}
-            errors={errors}
-            textError={rules.lastName.required}
-            type="text"
-            rules={rules.lastName}
+              label='نام خانوادگی'
+              name='lastName'
+              register={register}
+              errors={errors}
+              textError={rules.lastName.required}
+              type='text'
+              rules={rules.lastName}
             />
-            <Input
-            label="شماره موبایل"
-            name="phoneNumber"
-            register={register}
-            errors={errors}
-            textError={rules.phoneNumber.required}
-            type="tel"
-            rules={rules.phoneNumber}
-            />
-
-            <Input
-            label="کد ملی"
-            name="nationalId"
-            register={register}
-            errors={errors}
-            textError={rules.nationalId.required}
-            type="text"
-            rules={rules.nationalId}
-            />
-
-       
+            <div className='md:col-span-2 flex justify-center'>
+              <div className='w-full md:w-[calc(50%-10px)]'>
+                <Input
+                  label='شماره موبایل'
+                  name='phoneNumber'
+                  register={register}
+                  errors={errors}
+                  textError={rules.phoneNumber.required}
+                  type='tel'
+                  rules={rules.phoneNumber}
+                />
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="flex items-center justify-end border-t border-(--border-color) px-6 pt-4">
-          <Button
-            type="submit"
-            disabled={!isValid || isLoading}
-          >
+        <div className='flex items-center justify-end border-t border-(--border-color) px-6 pt-4'>
+          <Button type='submit' disabled={!isValid || isLoading}>
             {isLoading ? (
-             <SpinnerDiv/>
+              <SpinnerDiv />
             ) : (
               <>
                 ثبت مشتری

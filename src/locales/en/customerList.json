@@ -1,0 +1,21 @@
+{
+  "exportExcelPdf": "Excel/PDF Export",
+  "customer_list": "Introduced Customers List",
+  "row": "Row",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "mobile": "Mobile",
+  "introduction_date": "Introduction Date",
+  "expiration_date": "Expiration Date",
+  "status": "Status",
+   "actions": "Actions",
+  "delete": "Delete",
+  "introduced_customers": "Introduced Customers",
+  "customer_status": "Customer Status",
+   "initial_registration": "Initial Registration",
+  "expired": "Expired",
+  "deleted": "Deleted",
+  "customer": "Customer",
+  "new_customer_introduction": "New Customer Introduction",
+  "remaining_introduction_capacity": "Remaining Customer Introduction Capacity"
+}

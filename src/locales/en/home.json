@@ -5,5 +5,14 @@
     "field_required": "This field is required.",
     "only_numbers_allowed": "Only numbers allowed",
     "mobile_must_be_11_digits": "Mobile number must be 11 digits",
-    "national_code_invalid": "National code is invalid"
+    "national_code_invalid": "National code is invalid",
+    "page_loading": "page Loading ......",
+    "empty": "No data found.",
+    "tracking_number":"Tracking_number",
+    "remove_filter": "Remove the filter",
+    "get_report": "Get the report",
+    "customer_name": "Customer Name",
+    "merchant_name": "Merchant Name",
+    "transaction_type": "Transaction Type",
+     "status": "Status"
 }
