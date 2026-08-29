@@ -7,3 +7,4 @@ export { customerIntroducerQueryApi } from './CustomerList/services/CustomerList
 export { default as CustomerListTable } from './CustomerList/CustomerListTable';
 export { default as ResponsiveCustomerListTable } from './CustomerList/ResponsiveCustomerListTable';
 export { customerIntroducerRemoveApi } from './CustomerList/services/customerIntroducerRemoveApi';
+export { default as DentalPlaneClient } from './dentalPlanePage/DentalPlaneClient';

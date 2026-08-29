@@ -15,6 +15,8 @@ import {
   ArrowLeftRight,
   UserPlus,
   UsersRound,
+  GitPullRequestArrow,
+  Workflow,
 } from 'lucide-react';
 
 export const getDentistrySideBar = () => [
@@ -49,6 +51,11 @@ export const getDentistrySideBarItems = () => [
     label: i18n.t('sidebar:customer_status_list'),
     href: '/panel/customer-list',
     icon: UsersRound,
+  },
+  {
+    label: 'فرآیند دریافت اعتبار',
+    href: '/panel/how-to-get-credit',
+    icon: Workflow,
   },
 ];
 

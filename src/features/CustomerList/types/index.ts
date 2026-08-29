@@ -15,17 +15,20 @@ export interface CustomerIntroducer {
 
 export interface CustomerIntroducerQueryResponse {
   items: CustomerIntroducer[];
-  totalCount: number;
   pageNumber: number;
   pageSize: number;
+  totalCount: number;
   totalPages: number;
-  hasPreviousPage: boolean;
   hasNextPage: boolean;
+  hasPreviousPage: boolean;
 }
 
 export interface CustomerIntroducerQueryParams {
   pageNumber?: number;
   pageSize?: number;
+  searchTerm?: string;
+  fromDate?: string;
+  toDate?: string;
   statuses?: number[];
 }
 

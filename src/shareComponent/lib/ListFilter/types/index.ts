@@ -76,4 +76,5 @@ export interface IFilteredProps {
   maxAmount?: string;
   setMinAmount?: (value: string | null) => void;
   setMaxAmount?: (value: string | null) => void;
+  hasSelectedFilter?: boolean;
 }

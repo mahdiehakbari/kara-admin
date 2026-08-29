@@ -67,6 +67,7 @@ export const ListFilter = ({
   accountTypes,
   setAccountTypes,
   accountTypeOptions,
+  hasSelectedFilter,
 }: IFilteredProps) => {
   const { t } = useTranslation();
   //@ts-ignore
@@ -139,14 +140,13 @@ export const ListFilter = ({
               alt='calendar'
               width={20}
               height={20}
-              className='brightness-0 invert'
+              className=''
             />
           </div>
         </div>
       )}
     />
   );
-
 
   return (
     <div className='flex flex-wrap my-2  justify-between  md:full space-y-5'>
@@ -170,7 +170,9 @@ export const ListFilter = ({
               placeholder={
                 name == 'settlement'
                   ? 'جستجو شماره موبایل'
-                  :name == 'customerList' ?'جستجو نام و .... ':t('home:tracking_number') 
+                  : name == 'customerList'
+                    ? 'جستجو نام و .... '
+                    : t('home:tracking_number')
               }
               className={`text-(--text-muted) border border-(--border-color) w-full  h-9.5 px-3 rounded-sm outline-0 placeholder:text-right bg-(--surface)`}
               dir='rtl'
@@ -717,14 +719,22 @@ export const ListFilter = ({
             {renderDatePicker(
               fromDate ?? null,
               setFromDate!,
-              name == 'AccountingReport' ? 'از تاریخ' : 'از تاریخ تراکنش',
+              name == 'AccountingReport'
+                ? 'از تاریخ'
+                : name == 'customerList'
+                  ? 'از تاریخ معرفی'
+                  : 'از تاریخ تراکنش',
               name != 'settlement' ? today : undefined,
             )}
 
             {renderDatePicker(
               toDate ?? null,
               setToDate!,
-              name == 'AccountingReport' ? 'تا تاریخ' : 'تا تاریخ تراکنش',
+              name == 'AccountingReport'
+                ? 'تا تاریخ'
+                : name == 'customerList'
+                  ? 'تا تاریخ معرفی'
+                  : 'تا تاریخ تراکنش',
               name != 'settlement' ? today : undefined,
             )}
           </div>
@@ -745,7 +755,7 @@ export const ListFilter = ({
         <Button
           onClick={handleFilter}
           className='w-30'
-          // disabled={!hasSelectedFilter}
+          disabled={!hasSelectedFilter}
         >
           {t('home:get_report')}
         </Button>
