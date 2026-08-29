@@ -8,3 +8,5 @@ export { default as CustomerListTable } from './CustomerList/CustomerListTable';
 export { default as ResponsiveCustomerListTable } from './CustomerList/ResponsiveCustomerListTable';
 export { customerIntroducerRemoveApi } from './CustomerList/services/customerIntroducerRemoveApi';
 export { default as DentalPlaneClient } from './dentalPlanePage/DentalPlaneClient';
+export type { TabKey } from './socialMediaContent/types';
+export { default as ContentTabs } from './socialMediaContent/ContentTabs/ContentTabs';

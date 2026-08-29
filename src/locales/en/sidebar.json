@@ -1,5 +1,7 @@
 {
   "customer_referral_panel": "Customer Referrer Panel",
   "customer_definition": "Customer Registration",
-  "customer_status_list": "Customer Status List"
+  "customer_status_list": "Customer Status List",
+  "process_receiving":"The process of receiving credit",
+  "social_media":"Social Media"
 }

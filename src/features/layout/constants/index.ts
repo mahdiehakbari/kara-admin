@@ -17,6 +17,7 @@ import {
   UsersRound,
   GitPullRequestArrow,
   Workflow,
+  Share2,
 } from 'lucide-react';
 
 export const getDentistrySideBar = () => [
@@ -53,9 +54,14 @@ export const getDentistrySideBarItems = () => [
     icon: UsersRound,
   },
   {
-    label: 'فرآیند دریافت اعتبار',
+    label: i18n.t('sidebar:process_receiving'),
     href: '/panel/how-to-get-credit',
     icon: Workflow,
+  },
+  {
+    label: i18n.t('sidebar:social_media'),
+    href: '/panel/social-media-content',
+    icon: Share2,
   },
 ];
 

@@ -64,16 +64,18 @@ export function AppSidebar() {
     <aside className='hidden lg:flex w-72 shrink-0 flex-col h-screen overflow-auto sticky top-0 z-20 transition-colors bg-(--surface) shadow-sm'>
       <div className='p-6 flex flex-col gap-6 h-full'>
         {/* Header */}
-        <h2
-          className='text-xl font-bold transition-colors'
-          style={{ color: 'var(--sidebar-text)' }}
-        >
-          {userType == 'Financial'
-            ? t('dashboard:financialAdminPanel')
-            : userType == 'DentistryAdmin'
-              ? t('sidebar:company_panel')
-              : t('sidebar:customer_referral_panel')}
-        </h2>
+        <Link href='/panel'>
+          <h2
+            className='text-xl font-bold transition-colors'
+            style={{ color: 'var(--sidebar-text)' }}
+          >
+            {userType == 'Financial'
+              ? t('dashboard:financialAdminPanel')
+              : userType == 'DentistryAdmin'
+                ? t('sidebar:company_panel')
+                : t('sidebar:customer_referral_panel')}
+          </h2>
+        </Link>
 
         {(userType == 'Financial' ||
           userType == 'Admin' ||
