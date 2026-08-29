@@ -52,7 +52,7 @@ export const DentalPlaneContent = () => {
         </h3>
 
         <div className='md:flex items-center gap-1 mb-2'>
-          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--second-primary)'>
+          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--primary)'>
             {t('dental_plane:install_budget_app')}
           </span>
         </div>
@@ -68,7 +68,7 @@ export const DentalPlaneContent = () => {
         </p>
 
         <div className='md:flex items-center gap-1 mb-2'>
-          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--second-primary)'>
+          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--primary)'>
             {t('dental_plane:after_receiving_credit')}
           </span>
         </div>
@@ -83,7 +83,7 @@ export const DentalPlaneContent = () => {
         </p>
 
         <div className='md:flex items-center gap-1 mb-2'>
-          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--second-primary)'>
+          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--primary)'>
             {t('dental_plane:activate_in_dentalit')}
           </span>
         </div>
@@ -92,13 +92,12 @@ export const DentalPlaneContent = () => {
         </p>
 
         <div className='md:flex items-center gap-1 mb-2'>
-          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--second-primary)'>
+          <span className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 font-medium text-[14px] text-(--primary)'>
             {t('dental_plane:referral_to_doctors')}
           </span>
         </div>
         <p className='font-normal text-[14px] md:text-[15px] leading-8 text-second-text-color mb-6'>
           {t('dental_plane:referral_to_doctors_desc')}
-          
         </p>
 
         <div className='py-4 px-4 bg-(--light-primary) rounded-2xl mb-4 flex items-start gap-4 border border-(--primary-border)'>
@@ -109,7 +108,7 @@ export const DentalPlaneContent = () => {
             height={20}
             className='mt-0.5'
           />
-          <p className='font-normal text-[14px] md:text-[15px] leading-8 text-(--second-primary)'>
+          <p className='font-normal text-[14px] md:text-[15px] leading-8 text-(--primary)'>
             {t('dental_plane:constitutes_receiving_credit')}
           </p>
         </div>
@@ -117,7 +116,7 @@ export const DentalPlaneContent = () => {
 
       <div className='relative overflow-hidden rounded-[28px] border border-(--border-color) bg-(--surface) px-6 py-8 md:px-10 mb-12 shadow-[0_18px_40px_rgba(15,23,42,0.05)]'>
         <div className='pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-(--primary) to-transparent opacity-70' />
-        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--second-primary)'>
+        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--primary)'>
           {t('dental_plane:conditions_requesting')}
         </h3>
         <ul className='list-disc px-7 font-normal text-[14px] md:text-[15px] leading-8 text-second-text-color'>
@@ -133,7 +132,7 @@ export const DentalPlaneContent = () => {
 
       <div className='relative overflow-hidden rounded-[28px] border border-(--border-color) bg-(--surface) px-6 py-8 md:px-10 mb-12 shadow-[0_18px_40px_rgba(15,23,42,0.05)]'>
         <div className='pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-(--primary) via-transparent to-(--primary) opacity-60' />
-        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--second-primary)'>
+        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--primary)'>
           {t('dental_plane:why_installments')}
         </h3>
         <ul className='list-disc px-7 font-normal text-[14px] md:text-[15px] leading-8 text-second-text-color'>
@@ -149,7 +148,7 @@ export const DentalPlaneContent = () => {
         id='process_receiving'
       >
         <div className='pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-(--primary) to-transparent opacity-70' />
-        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--second-primary)'>
+        <h3 className='font-bold text-[14px] md:text-[15px] mb-3 text-(--primary)'>
           {t('dental_plane:who_can_purchase')}
         </h3>
         <ul className='list-disc px-7 font-normal text-[14px] md:text-[15px] leading-8 text-second-text-color'>

@@ -257,35 +257,38 @@ export function AppSidebar() {
           const Icon = item.icon;
           const isIconPath = typeof Icon === 'string';
 
+          const isVisualContentShowcase = item.label === 'ویترین محتوای بصری';
+
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                isVisualContentShowcase && !isActive
+                  ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 text-(--primary) border border-violet-200'
+                  : ''
+              }`}
               style={{
                 backgroundColor: isActive
                   ? 'var(--primary)'
-                  : 'var(--sidebar-bg)',
-                color: isActive ? 'var(--text-white)' : 'var(--text-black)',
-              }}
-              onMouseEnter={(e) => {
-                if (!isActive) {
-                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                    'var(--sidebar-bg)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isActive) {
-                  (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
-                    'var(--sidebar-bg)';
-                }
+                  : isVisualContentShowcase
+                    ? undefined
+                    : 'var(--sidebar-bg)',
+                color: isActive
+                  ? 'var(--text-white)'
+                  : isVisualContentShowcase
+                    ? undefined
+                    : 'var(--text-black)',
               }}
             >
-              {isIconPath ? (
+              {isVisualContentShowcase ? (
+                <span className=' text-lg animate-pulse'>✨</span>
+              ) : isIconPath ? (
                 <img src={Icon} alt='' className='w-5 h-5' aria-hidden='true' />
               ) : (
                 <Icon className='w-5 h-5' strokeWidth={isActive ? 2.5 : 2} />
               )}
+
               <span className='text-sm font-medium'>{item.label}</span>
             </Link>
           );
@@ -296,7 +299,6 @@ export function AppSidebar() {
             variant='outline'
             onClick={toggleTheme}
             className='group flex items-center justify-between px-4 py-3 rounded-xl
-           
             transition-all duration-200 w-full'
           >
             <div className='flex items-center gap-3'>
@@ -317,10 +319,10 @@ export function AppSidebar() {
             variant='outline'
             onClick={handleLogout}
             className='flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl
-            border-2 border-red-200 dark:border-red-900/30
+            border-2 border-red-200 dark:border-red-800
             text-red-600 dark:text-red-400
-            hover:bg-red-50 dark:hover:bg-red-900/10
-            hover:border-red-300 dark:hover:border-red-800
+            hover:bg-red-50 dark:hover:bg-red-900/10 dark:hover:text-red-600
+            hover:border-red-300 dark:hover:border-red-300
             transition-all duration-200 mb-6'
           >
             <LogOut className='w-5 h-5' />

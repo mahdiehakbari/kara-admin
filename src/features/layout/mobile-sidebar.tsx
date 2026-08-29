@@ -353,10 +353,10 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
               variant='outline'
               onClick={handleLogout}
               className='flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl
-            border-2 border-red-200 dark:border-red-900/30
+            border-2 border-red-200 dark:border-red-800
             text-red-600 dark:text-red-400
-            hover:bg-red-50 dark:hover:bg-red-900/10
-            hover:border-red-300 dark:hover:border-red-800
+            hover:bg-red-50 dark:hover:bg-red-900/10 dark:hover:text-red-600
+            hover:border-red-300 dark:hover:border-red-300
             transition-all duration-200'
             >
               <LogOut className='w-5 h-5' />

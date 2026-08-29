@@ -63,6 +63,7 @@
 
 
 .dark {
+  --primary: #3985f7;
   --background: #081630;
   --surface: #0d2150;
   --text-black: #e8f0ff;
