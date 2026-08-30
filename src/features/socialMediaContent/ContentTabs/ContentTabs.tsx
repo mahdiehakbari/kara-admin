@@ -1,53 +1,73 @@
 'use client';
 
-
-import { tabs } from "../constants";
-import { Props } from "../types";
+import { useTranslation } from 'react-i18next';
+import { tabs } from '../constants';
+import { Props } from '../types';
+import { Button } from '@/shareComponent';
 
 export default function ContentTabs({ active, onChange }: Props) {
+  const { t } = useTranslation('social_media');
+
   return (
-    <div className='mb-5'>
+    <div className='w-full max-w-full overflow-hidden mb-5'>
       <div
         className='
-          flex
-          gap-3
+          w-full
+          max-w-full
           overflow-x-auto
-          px-1
+          overflow-y-hidden
           pb-2
         '
+        style={{
+          WebkitOverflowScrolling: 'touch',
+          scrollbarWidth: 'thin',
+        }}
       >
-        {tabs.map(({ id, title, icon: Icon }) => {
-          const isActive = active === id;
+        <div
+          className='
+            flex
+            gap-3
+            w-max
+            min-w-max
+            px-1
+          '
+        >
+          {tabs.map(({ id, translationKey, icon: Icon }) => {
+            const isActive = active === id;
 
-          return (
-            <button
-              key={id}
-              onClick={() => onChange(id)}
-              className={`
-                shrink-0
-                flex
-                items-center
-                gap-2
-                rounded-xl
-                border
-                px-3
-                py-3
-                transition-all
-                duration-200
-                whitespace-nowrap
-                cursor-pointer
-                ${
-                  isActive
-                    ? 'bg-(--primary) border-(--primary) text-white shadow-sm'
-                    : 'bg-white border-gray-200 text-gray-700 hover:border-(--primary) hover:text-(--primary)'
-                }
-              `}
-            >
-              <Icon className='text-lg' />
-              <span className='text-sm font-medium'>{title}</span>
-            </button>
-          );
-        })}
+            return (
+              <Button
+                key={id}
+                type='button'
+                variant='outline'
+                size='md'
+                onClick={() => onChange(id)}
+                className={`
+                  !w-auto
+                  !h-auto
+                  !shrink-0
+                  gap-2
+                  whitespace-nowrap
+                  rounded-xl
+                  px-4
+                  py-3
+
+                  ${
+                    isActive
+                      ? '!bg-(--primary) !border-(--primary) !text-white'
+                      : '!bg-white !border-gray-200 !text-gray-700'
+                  }
+                `}
+              >
+                <Icon className='shrink-0 text-lg' />
+
+                <span className='whitespace-nowrap text-sm font-medium'>
+                  {t(translationKey)}
+                </span>
+              </Button>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

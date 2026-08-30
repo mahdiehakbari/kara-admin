@@ -10,3 +10,4 @@ export { customerIntroducerRemoveApi } from './CustomerList/services/customerInt
 export { default as DentalPlaneClient } from './dentalPlanePage/DentalPlaneClient';
 export type { TabKey } from './socialMediaContent/types';
 export { default as ContentTabs } from './socialMediaContent/ContentTabs/ContentTabs';
+export { default as Post } from './socialMediaContent/Post/Post';

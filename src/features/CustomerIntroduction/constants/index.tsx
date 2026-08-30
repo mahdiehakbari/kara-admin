@@ -2,6 +2,7 @@ export const CUSTOMER_INTRODUCTION_DEFAULT_VALUES = {
   phoneNumber: '',
   firstName: '',
   lastName: '',
+  showIntroducerName: false,
 };
 
 export const CUSTOMER_INTRODUCTION_MAX_LENGTH = {
