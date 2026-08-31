@@ -106,22 +106,13 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
             </div>
           </div>
 
-          <div className='mt-6 space-y-3 rounded-xl border border-(--border-color) bg-(--surface) p-4'>
-            <label className='flex items-center gap-3 cursor-pointer select-none'>
-              <input
-                type='checkbox'
-                {...register('showIntroducerName')}
-                className='h-4 w-4 rounded border-slate-300 text-(--primary)  transition-all cursor-pointer'
-              />
-              <span className='font-bold text-(--primary) '>
-                ارسال پیامک با درج نام معرف
-              </span>
-            </label>
-
+          <div className='mt-6 mb-4 space-y-3 rounded-xl border border-(--border-color) bg-(--surface) p-4'>
             <div className='rounded-lg   p-3.5 shadow-xs '>
               <div className='mb-2 flex items-center gap-1.5 text-xs font-semibold text-(--text-muted)'>
                 <MessageSquareText size={15} />
-                <span className='mr-2'>پیش‌نمایش متن پیامک ارسالی:</span>
+                <span className='mr-2'>
+                  پیش‌نمایش متن پیامک ارسالی برای مشتری:
+                </span>
               </div>
               <p className='text-sm leading-relaxed text-justify whitespace-pre-line'>
                 {showIntroducerName
@@ -139,6 +130,16 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
               </p>
             </div>
           </div>
+          <label className='my-2 flex items-center gap-3 cursor-pointer select-none'>
+            <input
+              type='checkbox'
+              {...register('showIntroducerName')}
+              className='h-4 w-4 rounded border-slate-300 text-(--primary)  transition-all cursor-pointer'
+            />
+            <span className='font-bold text-(--primary) '>
+              ارسال پیامک با درج نام معرف
+            </span>
+          </label>
         </div>
 
         {/* Footer */}
