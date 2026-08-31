@@ -105,15 +105,12 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
               </div>
             </div>
           </div>
-
-          <div className='mt-6 mb-4 space-y-3 rounded-xl border border-(--border-color) bg-(--surface) p-4'>
+          <div className='mb-2 mt-6 flex items-center gap-1.5 text-xs font-semibold text-(--text-muted)'>
+            <MessageSquareText size={15} />
+            <span className='mr-2'>پیش‌نمایش متن پیامک ارسالی برای مشتری:</span>
+          </div>
+          <div className=' mb-4 space-y-3 rounded-xl border border-(--border-color) bg-(--surface) p-4'>
             <div className='rounded-lg   p-3.5 shadow-xs '>
-              <div className='mb-2 flex items-center gap-1.5 text-xs font-semibold text-(--text-muted)'>
-                <MessageSquareText size={15} />
-                <span className='mr-2'>
-                  پیش‌نمایش متن پیامک ارسالی برای مشتری:
-                </span>
-              </div>
               <p className='text-sm leading-relaxed text-justify whitespace-pre-line'>
                 {showIntroducerName
                   ? `دوست عزیز، شما توسط ${fullName} به طرح ملی دنتالیت دعوت شده‌اید.\nمی‌توانید تا سقف ۱۵۰ میلیون تومان اعتبار دندانپزشکی دریافت کنید و هزینه‌ها را در ۱۲ قسط بپردازید. این تسهیلات از طریق طرح طب نو بانک تجارت ارائه می‌شود.`
