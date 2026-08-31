@@ -1,6 +1,4 @@
 import { DateObject } from 'react-multi-date-picker';
-import { TAcceptor } from '../hooks/useFetchAcceptor/types';
-import { TMerchant } from '../hooks/useFetchMerchant/types';
 
 export interface ISelectOption {
   label: string;
