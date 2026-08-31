@@ -6,10 +6,14 @@
   "phone_number_required": "شماره موبایل الزامی است.",
   "password": "رمز عبور",
   "password_required": "رمز عبور الزامی است",
-  "login_panel": "ورود به پنل",
+  "login_panel": "ورود/ ثبت نام",
   "phone_number_invalid": "شماره موبایل اشتباه است.",
   "invalid_data": "شماره موبایل یا رمز عبور اشتباه است.",
   "verification_code": "کد تایید",
   "hide_pass": "پنهان کردن رمز عبور",
-  "show_pass": "نمایش رمز عبور"
+  "show_pass": "نمایش رمز عبور",
+  "login": "ورود",
+  "resend_code": "ارسال مجدد کد",
+  "enter_otp_message": "لطفا کد تایید ارسال شده به شماره {{phone}} را وارد نمایید",
+  "resend_otp":"کد یکبار مصرف با موفقیت ارسال شد"
 }

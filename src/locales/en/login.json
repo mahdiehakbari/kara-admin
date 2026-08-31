@@ -11,5 +11,9 @@
   "invalid_data": "The mobile number or password is incorrect.",
   "verification_code": "Verification Code",
   "hide_pass": "Hide password",
-  "show_pass": "Show password"
+  "show_pass": "Show password",
+  "login": "login",
+  "resend_code": "Resend Code",
+  "enter_otp_message": "Please enter the verification code sent to {{phone}}",
+  "resend_otp":"One-time code sent successfully."
 }

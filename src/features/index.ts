@@ -11,3 +11,5 @@ export { default as DentalPlaneClient } from './dentalPlanePage/DentalPlaneClien
 export type { TabKey } from './socialMediaContent/types';
 export { default as ContentTabs } from './socialMediaContent/ContentTabs/ContentTabs';
 export { default as Post } from './socialMediaContent/Post/Post';
+export { OtpModal } from './Auth/OTPComponent/OtpModal';
+export { updateCustomerIntroducerProfile } from './Profile/services/customerIntroducerApi';
