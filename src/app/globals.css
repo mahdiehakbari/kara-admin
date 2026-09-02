@@ -4,7 +4,7 @@
   /* Core surface */
   --background: #f4f4f4;
   --surface: #ffffff;
-
+--bg-gray-light:#f8fafc;
   /* Dentalit Brand */
   --primary: #114a9f;
   --primary-hover: #0d3d87;
@@ -65,6 +65,7 @@
 .dark {
   --primary: #3985f7;
   --background: #081630;
+    --bg-gray-light:#0d2150;
   --surface: #0d2150;
   --text-black: #e8f0ff;
   --text-muted: #8aadd4;

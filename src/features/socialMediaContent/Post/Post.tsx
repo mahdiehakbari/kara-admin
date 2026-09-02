@@ -25,22 +25,20 @@ const Post = () => {
       <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
         {/* ستون اول */}
         <div className='min-w-0'>
-         
-        <div className="mb-6">
-              <DownloadCard
-            desc='این ویدئو طرح اعتباری دنتالیت را از جانب یک بیمار به زبان ساده توضیح می‌دهد.'
-            title='تیزر معرفی درمان اقساطی با دنتالیت و باجت'
-            onDownload={handleDownload}
-          />
-        </div>
+          <div className='mb-6'>
+            <DownloadCard
+              desc='این ویدئو طرح اعتباری دنتالیت را از جانب یک بیمار به زبان ساده توضیح می‌دهد.'
+              title='تیزر معرفی درمان اقساطی با دنتالیت و باجت'
+              onDownload={handleDownload}
+            />
+          </div>
 
           <PostInfo caption={caption} setCaption={setCaption} />
         </div>
-       
 
         {/* ستون دوم */}
         {/* <div className='min-w-0'> */}
-          <div
+        <div
           className='
           min-w-0
           flex
@@ -65,7 +63,7 @@ const Post = () => {
             <p className='text-(--text-muted)'>پیش‌نمایش پست در گوشی بیماران</p>
           </div>
         </div>
-        </div>
+      </div>
       {/* </div> */}
     </section>
   );

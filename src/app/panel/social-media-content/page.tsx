@@ -1,7 +1,14 @@
 
 'use client';
 
-import { ContentTabs, Post, TabKey } from '@/features';
+import {
+  ContentTabs,
+  Post,
+  TabKey,
+  Story,
+  GroupMessage,
+  Direct,
+} from '@/features';
 import { useState } from 'react';
 import { FaBullhorn, FaGift, FaInstagram } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
@@ -41,6 +48,24 @@ const SocialMediaContent = () => {
         {activeTab === 'post' && (
           <div>
             <Post />
+          </div>
+        )}
+
+        {activeTab === 'story' && (
+          <div>
+            <Story />
+          </div>
+        )}
+
+        {activeTab === 'groupMessage' && (
+          <div>
+            <GroupMessage />
+          </div>
+        )}
+
+        {activeTab === 'direct' && (
+          <div>
+            <Direct />
           </div>
         )}
       </div>
