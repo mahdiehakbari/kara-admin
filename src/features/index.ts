@@ -14,5 +14,7 @@ export { default as Post } from './socialMediaContent/Post/Post';
 export { OtpModal } from './Auth/OTPComponent/OtpModal';
 export { updateCustomerIntroducerProfile } from './Profile/services/customerIntroducerApi';
 export { default as Story } from './socialMediaContent/Story/Story';
-export { default as GroupMessage } from './socialMediaContent/groupMessage/groupMessage';
+export { default as GroupMessage } from './socialMediaContent/GroupMessage/GroupMessage';
 export { default as Direct } from './socialMediaContent/Direct/Direct';
+export { default as Guid } from './socialMediaContent/Guid/Guid';
+export { default as FollowUp } from './socialMediaContent/FollowUp/FollowUp';

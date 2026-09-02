@@ -8,9 +8,11 @@ import {
   Story,
   GroupMessage,
   Direct,
+  Guid,
+  FollowUp,
 } from '@/features';
 import { useState } from 'react';
-import { FaBullhorn, FaGift, FaInstagram } from 'react-icons/fa';
+import { FaBullhorn, FaGift } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
 
 const SocialMediaContent = () => {
@@ -66,6 +68,18 @@ const SocialMediaContent = () => {
         {activeTab === 'direct' && (
           <div>
             <Direct />
+          </div>
+        )}
+
+        {activeTab === 'guid' && (
+          <div>
+            <Guid />
+          </div>
+        )}
+
+        {activeTab === 'followUp' && (
+          <div>
+            <FollowUp />
           </div>
         )}
       </div>
