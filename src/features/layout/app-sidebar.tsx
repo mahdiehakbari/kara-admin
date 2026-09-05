@@ -31,7 +31,6 @@ export function AppSidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { t } = useTranslation();
-  const userType = localStorage.getItem('userType');
   const isActive = (path: string) => pathname === path;
   const [openMenu, setOpenMenu] = useState(true);
   const [openMenuDentist, setOpenMenuDentist] = useState(false);
@@ -49,7 +48,7 @@ export function AppSidebar() {
   };
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('userInfo');
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -69,17 +68,17 @@ export function AppSidebar() {
             className='text-xl font-bold transition-colors'
             style={{ color: 'var(--sidebar-text)' }}
           >
-            {userType == 'Financial'
+            {user?.userType == 'Financial'
               ? t('dashboard:financialAdminPanel')
-              : userType == 'DentistryAdmin'
+              : user?.userType == 'DentistryAdmin'
                 ? t('sidebar:company_panel')
                 : t('sidebar:customer_referral_panel')}
           </h2>
         </Link>
 
-        {(userType == 'Financial' ||
-          userType == 'Admin' ||
-          userType == 'CustomerIntroducer') && (
+        {(user?.userType == 'Financial' ||
+          user?.userType == 'Admin' ||
+          user?.userType == 'CustomerIntroducer') && (
           <div className='flex items-center gap-4 px-2'>
             <div className='relative'>
               <img
@@ -108,7 +107,7 @@ export function AppSidebar() {
             </div>
           </div>
         )}
-        {userType == 'Admin' && (
+        {user?.userType == 'Admin' && (
           <>
             <Link href='panel/customerManagement'>
               <div
@@ -247,9 +246,9 @@ export function AppSidebar() {
           </>
         )}
 
-        {(userType === 'Financial'
+        {(user?.userType === 'Financial'
           ? getFinancialSideBarItems()
-          : userType === 'CustomerIntroducer'
+          : user?.userType === 'CustomerIntroducer'
             ? getDentistrySideBarItems()
             : []
         ).map((item) => {

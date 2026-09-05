@@ -41,6 +41,17 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
   const [user, setUser] = useState<IUser | null>(null);
 
   const isActive = (path: string) => pathname === path;
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        setUser(JSON.parse(storedUser));
+      } catch (e) {
+        console.error('Invalid user JSON:', e);
+      }
+    }
+  }, []);
 
   const handleLogout = () => {
     Cookies.remove('token');
@@ -54,8 +65,6 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
   };
   if (!isOpen) return null;
 
-  const userType = localStorage.getItem('userType');
-
   return (
     <>
       {/* Overlay */}
@@ -68,9 +77,9 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
           {/* Header */}
           <div className='flex items-center justify-between mb-2'>
             <h2 className='text-xl font-bold text-(--text-black)'>
-              {userType == 'Financial'
+              {user?.userType == 'Financial'
                 ? t('dashboard:financialAdminPanel')
-                : userType == 'DentistryAdmin'
+                : user?.userType == 'DentistryAdmin'
                   ? t('sidebar:customer_referral_panel')
                   : 'پنل ادمین دنتالیت'}
             </h2>
@@ -110,7 +119,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             </div>
           </div> */}
 
-          {(userType == 'Financial' || userType == 'Admin') && (
+          {(user?.userType == 'Financial' || user?.userType == 'Admin') && (
             <>
               <div className='flex items-center gap-4 px-2'>
                 <div className='relative'>
@@ -138,7 +147,7 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
             </>
           )}
 
-          {userType == 'Admin' && (
+          {user?.userType == 'Admin' && (
             <>
               <Link href='panel/customerManagement'>
                 <div
@@ -285,9 +294,9 @@ export function MobileSidebar({ isOpen, onClose }: MobileSidebarProps) {
 
           {/* Navigation */}
           <nav className='flex flex-col gap-2 flex-1 overflow-y-auto'>
-            {(userType === 'Financial'
+            {(user?.userType === 'Financial'
               ? getFinancialSideBarItems()
-              : userType === 'CustomerIntroducer'
+              : user?.userType === 'CustomerIntroducer'
                 ? getDentistrySideBarItems()
                 : []
             ).map((item) => {
