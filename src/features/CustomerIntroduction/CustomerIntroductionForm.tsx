@@ -33,7 +33,7 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
 
   const showIntroducerName = watch('showIntroducerName');
   useEffect(() => {
-    const storedUser = localStorage.getItem('userInfo');
+    const storedUser = localStorage.getItem('user');
     if (storedUser) {
       try {
         // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -55,6 +55,7 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
     }
   };
 
+  console.log(user, 'user');
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -69,7 +70,7 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
         <CustomerIntroductionHeader />
 
         <div className='p-6 space-y-6'>
-          {/* ورودی‌ها */}
+
           <div className='grid grid-cols-1 gap-5 md:grid-cols-2'>
             <Input
               label='نام'
