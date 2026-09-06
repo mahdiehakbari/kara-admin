@@ -5,6 +5,8 @@ export interface CustomerIntroductionFormValues extends FieldValues {
   firstName: string;
   lastName: string;
   showIntroducerName: boolean;
+  captchaId: string;
+  captchaCode: string;
 }
 
 export interface CustomerIntroductionResponse {
@@ -12,3 +14,4 @@ export interface CustomerIntroductionResponse {
   message?: string;
   data?: unknown;
 }
+

@@ -69,4 +69,5 @@ export type InputProps<T extends FieldValues> = {
   type?: string;
   full?: boolean;
   disabled?: boolean;
+  maxLength?: number;
 };

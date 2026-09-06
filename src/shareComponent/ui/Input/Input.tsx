@@ -13,9 +13,11 @@ export function Input<T extends FieldValues>({
   rules,
   defaultValue,
   disabled = false,
+  maxLength,
 }: InputProps<T>) {
   const hasError = !!errors[name];
   const isRequired = rules?.required !== false;
+
   const maxLengthMap: Partial<Record<keyof IProfileFormValues, number>> = {
     postalCode: 10,
     iban: 24,
@@ -23,10 +25,14 @@ export function Input<T extends FieldValues>({
     nationalId: 10,
   };
 
+  const inputMaxLength =
+    maxLength ?? maxLengthMap[name as keyof IProfileFormValues];
+
   return (
     <div className={`flex flex-col ${full ? 'col-span-2' : ''}`}>
       <label className='text-sm'>{isRequired ? `${label} *` : label}</label>
-      <div className={`${name == 'iban' && 'flex w-73'}`}>
+
+      <div className={`${name === 'iban' ? 'flex w-73' : ''}`}>
         <input
           {...register(name, {
             ...(isRequired && { required: textError }),
@@ -41,36 +47,36 @@ export function Input<T extends FieldValues>({
             },
           })}
           type={type}
-          maxLength={maxLengthMap[name]}
+          maxLength={inputMaxLength}
           defaultValue={
             name === 'iban' && defaultValue
               ? defaultValue.replace(/\D/g, '')
               : defaultValue
           }
           disabled={disabled}
-          // placeholder={isRequired ? `${label} *` : label}
-          className={`bg-(--surface) border rounded-lg px-3 py-2 text-right  w-full 
-                    focus:outline-none focus:ring-2
-                    ${name == 'iban' && 'w-3xs'}
-                    ${
-                      hasError
-                        ? 'border-red-500 focus:ring-red-400'
-                        : 'border-(--border-color) focus:ring-blue-500'
-                    }
-                    ${
-                      disabled
-                        ? `bg-(--surface) cursor-default opacity-70 text-[#9b9b9b]`
-                        : ''
-                    } 
-                    `}
-        />
-        {name == 'iban' && (
-          <div
-            className={`flex items-center px-3  border border-r-0   ${
+          className={`bg-(--surface) border rounded-lg px-3 py-2 text-right w-full
+            focus:outline-none focus:ring-2
+            ${name === 'iban' ? 'w-3xs' : ''}
+            ${
               hasError
                 ? 'border-red-500 focus:ring-red-400'
                 : 'border-(--border-color) focus:ring-blue-500'
-            }  rounded-l-md -mr-7.25 bg-(--surface)`}
+            }
+            ${
+              disabled
+                ? 'bg-(--surface) cursor-default opacity-70 text-[#9b9b9b]'
+                : ''
+            }
+          `}
+        />
+
+        {name === 'iban' && (
+          <div
+            className={`flex items-center px-3 border border-r-0 ${
+              hasError
+                ? 'border-red-500 focus:ring-red-400'
+                : 'border-(--border-color) focus:ring-blue-500'
+            } rounded-l-md -mr-7.25 bg-(--surface)`}
           >
             IR
           </div>
@@ -84,4 +90,4 @@ export function Input<T extends FieldValues>({
       )}
     </div>
   );
-};
+}

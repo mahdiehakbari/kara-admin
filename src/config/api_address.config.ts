@@ -13,3 +13,4 @@ export const API_ADD_CUSTOMER_INTRODUCTION = `${BASE_URL}/CustomerIntroducerComm
 export const API_CUSTOMER_INTRODUCER_QUERY = `${BASE_URL}/CustomerIntroducerQuery/paged`;
 export const API_CUSTOMER_INTRODUCER_REMOVE = `${BASE_URL}/CustomerIntroducerCommand/remove`;
 export const API_AI_REWRITE = `${BASE_URL}/MerchantsQuery/caption/ai-rewrite`;
+export const API_CUSTOMER_INTRODUCTION_CAPTCHA = `${BASE_URL}/PublicQuery/CaptchaImage`;

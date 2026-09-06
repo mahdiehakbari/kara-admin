@@ -3,6 +3,8 @@ export const CUSTOMER_INTRODUCTION_DEFAULT_VALUES = {
   firstName: '',
   lastName: '',
   showIntroducerName: false,
+  captchaId: '',
+  captchaCode: '',
 };
 
 export const CUSTOMER_INTRODUCTION_MAX_LENGTH = {
