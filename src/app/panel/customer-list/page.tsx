@@ -99,21 +99,44 @@ const CustomerList = () => {
     }
   }, []);
 
+  const getInitialData = useCallback(async () => {
+    try {
+      if (activeTab === 0) {
+        const response = await customerIntroducerQueryApi({
+          pageNumber: 1,
+          pageSize: 1,
+          statuses: [0],
+        });
+
+        const usedCapacity = response.totalCount;
+
+        setRemainingCapacity(
+          Math.max(MAX_CUSTOMER_INTRODUCTIONS - usedCapacity, 0),
+        );
+      }
+
+      if (activeTab === 1) {
+        await customerIntroducerQueryApi({
+          pageNumber: 1,
+          pageSize: 1,
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [activeTab]);
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
         setLoading(true);
-        await Promise.all([
-          getCustomers(),
-          getRemainingCapacity(),
-        ]);
+        await getInitialData();
       } finally {
         setLoading(false);
       }
     };
 
     fetchInitialData();
-  }, [getCustomers, getRemainingCapacity]);
+  }, [getInitialData]);
 
   const handleFilter = () => {
     setShowRemoveButton(true);
@@ -122,7 +145,8 @@ const CustomerList = () => {
       searchTerm: searchTerm.trim(),
       fromDate: formatDateForApi(fromDate),
       toDate: formatDateForApi(toDate),
-      statuses: activeTab === 1 ? statuses.map((item) => Number(item.value)) : [],
+      statuses:
+        activeTab === 1 ? statuses.map((item) => Number(item.value)) : [],
     });
   };
 
@@ -205,7 +229,7 @@ const CustomerList = () => {
     { label: 'ثبت اولیه', value: '0' },
     { label: 'منقضی شده', value: '1' },
     { label: 'حذف شده', value: '2' },
-    { label: ' مشتری', value: '3' },
+    { label: 'مشتری', value: '3' },
   ];
 
   const handleCustomerIntroductionSuccess = async () => {

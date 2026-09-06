@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { toast } from 'react-toastify';
-
+import qs from 'qs';
 import { API_CUSTOMER_INTRODUCER_QUERY } from '@/config/api_address.config';
 
 import {
@@ -39,12 +39,16 @@ export const customerIntroducerQueryApi = async (
           }),
         },
 
+        paramsSerializer: (params) =>
+          qs.stringify(params, {
+            arrayFormat: 'repeat',
+          }),
+
         headers: {
           Authorization: token ? `Bearer ${token}` : '',
         },
       },
     );
-
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
