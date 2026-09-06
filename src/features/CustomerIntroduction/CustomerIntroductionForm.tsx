@@ -188,78 +188,6 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
             </div>
           </div>
 
-          {/* ================= CAPTCHA ================= */}
-          <div className='rounded-2xl border border-(--border-color) bg-(--surface) p-4'>
-            <div className='mb-4 flex items-center gap-2'>
-              <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-(--primary)/10'>
-                <ShieldCheck size={17} className='text-(--primary)' />
-              </div>
-
-              <div>
-                <p className='text-sm font-bold'>تأیید امنیتی</p>
-
-                <p className='mt-0.5 text-xs text-(--text-muted)'>
-                  کد داخل تصویر را وارد کنید
-                </p>
-              </div>
-            </div>
-
-            <div className='flex flex-col gap-4 md:flex-row md:items-center'>
-              {/* Captcha image */}
-              <div className='flex min-h-[52px] flex-1 items-center gap-3'>
-                {captchaImage && !captchaExpired ? (
-                  <div className='flex h-[52px] flex-1 items-center justify-center overflow-hidden rounded-xl border border-(--border-color) bg-white px-3'>
-                    <img
-                      src={captchaImage}
-                      alt='captcha'
-                      className='h-full max-w-full object-contain'
-                    />
-                  </div>
-                ) : (
-                  <div className='flex h-[52px] flex-1 items-center justify-center rounded-xl border border-dashed border-(--border-color) bg-(--surface)'>
-                    <span className='text-xs text-(--text-muted)'>
-                      کپچا منقضی شده است
-                    </span>
-                  </div>
-                )}
-
-                <button
-                  type='button'
-                  onClick={loadCaptcha}
-                  disabled={captchaLoading}
-                  title='تولید کپچای جدید'
-                  className='flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl border border-(--border-color) transition hover:bg-(--primary)/5 disabled:cursor-not-allowed disabled:opacity-50'
-                >
-                  <RefreshCw
-                    size={18}
-                    className={
-                      captchaLoading
-                        ? 'animate-spin text-(--primary)'
-                        : 'text-(--text-muted)'
-                    }
-                  />
-                </button>
-              </div>
-
-              {/* Captcha code */}
-              <div className='w-full md:w-[220px] mb-[8px]'>
-                <Input
-                  label='کد امنیتی'
-                  name='captchaCode'
-                  register={register}
-                  errors={errors}
-                  type='text'
-                  maxLength={6}
-                  rules={{
-                    required: 'وارد کردن کد امنیتی الزامی است',
-                  }}
-                  textError='وارد کردن کد امنیتی الزامی است'
-                  disabled={!captchaImage || captchaExpired}
-                />
-              </div>
-            </div>
-          </div>
-
           <div>
             <div className='mb-2 mt-6 flex items-center gap-1.5 text-xs font-semibold text-(--text-muted)'>
               <MessageSquareText size={15} />
@@ -302,6 +230,78 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
               ارسال پیامک با درج نام معرف
             </span>
           </label>
+        </div>
+
+        {/* ================= CAPTCHA ================= */}
+        <div className='rounded-2xl border border-(--border-color) bg-(--surface) p-4  mb-4'>
+          <div className='mb-4 flex items-center gap-2'>
+            <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-(--primary)/10'>
+              <ShieldCheck size={17} className='text-(--primary)' />
+            </div>
+
+            <div>
+              <p className='text-sm font-bold'>تأیید امنیتی</p>
+
+              <p className='mt-0.5 text-xs text-(--text-muted)'>
+                کد داخل تصویر را وارد کنید
+              </p>
+            </div>
+          </div>
+
+          <div className='flex flex-col gap-4 md:flex-row md:items-center'>
+            {/* Captcha image */}
+            <div className='flex min-h-[52px] flex-1 items-center gap-3'>
+              {captchaImage && !captchaExpired ? (
+                <div className='flex h-[52px] flex-1 items-center justify-center overflow-hidden rounded-xl border border-(--border-color) bg-white px-3'>
+                  <img
+                    src={captchaImage}
+                    alt='captcha'
+                    className='h-full max-w-full object-contain'
+                  />
+                </div>
+              ) : (
+                <div className='flex h-[52px] flex-1 items-center justify-center rounded-xl border border-dashed border-(--border-color) bg-(--surface)'>
+                  <span className='text-xs text-(--text-muted)'>
+                    کپچا منقضی شده است
+                  </span>
+                </div>
+              )}
+
+              <button
+                type='button'
+                onClick={loadCaptcha}
+                disabled={captchaLoading}
+                title='تولید کپچای جدید'
+                className='flex h-[52px] w-[52px] shrink-0 items-center justify-center rounded-xl border border-(--border-color) transition hover:bg-(--primary)/5 disabled:cursor-not-allowed disabled:opacity-50'
+              >
+                <RefreshCw
+                  size={18}
+                  className={
+                    captchaLoading
+                      ? 'animate-spin text-(--primary)'
+                      : 'text-(--text-muted)'
+                  }
+                />
+              </button>
+            </div>
+
+            {/* Captcha code */}
+            <div className='w-full md:w-[220px] mb-[8px]'>
+              <Input
+                label='کد امنیتی'
+                name='captchaCode'
+                register={register}
+                errors={errors}
+                type='text'
+                maxLength={6}
+                rules={{
+                  required: 'وارد کردن کد امنیتی الزامی است',
+                }}
+                textError='وارد کردن کد امنیتی الزامی است'
+                disabled={!captchaImage || captchaExpired}
+              />
+            </div>
+          </div>
         </div>
 
         {/* Footer */}
