@@ -4,6 +4,7 @@ import { CustomerListTableProps } from "./types";
 import { useTranslation } from "react-i18next";
 import { getStatusStyle, getThItems } from "./constants";
 import { SpinnerDiv, toPersianNumber } from "@/shareComponent";
+import { useState } from 'react';
 
 const CustomerListTable = ({
   data,
@@ -11,10 +12,10 @@ const CustomerListTable = ({
   pageSize,
   onDelete,
   deleteLoading,
-  activeTab
+  activeTab,
 }: CustomerListTableProps) => {
   const { t } = useTranslation();
-
+  const [deletingId, setDeletingId] = useState<number | string | null>(null);
   return (
     <div className='hidden md:block border border-(--border-color) rounded-xl overflow-hidden max-h-145 bg-(--surface)'>
       <div className='overflow-auto max-h-145'>
@@ -86,7 +87,7 @@ const CustomerListTable = ({
                       title={t('customerList:delete')}
                       className='p-2 rounded-lg transition-colors hover:bg-red-50 text-red-500 hover:text-red-600'
                     >
-                      {deleteLoading == true ? (
+                      {deleteLoading && deletingId === customer.id ? (
                         <SpinnerDiv />
                       ) : (
                         <Trash2 size={18} />
@@ -101,6 +102,6 @@ const CustomerListTable = ({
       </div>
     </div>
   );
-}
+};
  
 export default CustomerListTable;

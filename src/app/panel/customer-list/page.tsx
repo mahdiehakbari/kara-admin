@@ -20,6 +20,7 @@ import {
   CustomerListTable,
   ResponsiveCustomerListTable,
 } from '@/features';
+
 import { CustomerIntroducerQueryResponse } from '@/features/CustomerList/types';
 import { ISelectOption } from '@/shareComponent/lib/ListFilter/types';
 
@@ -29,19 +30,27 @@ const PAGE_SIZE_OPTIONS = [10, 20, 30, 50];
 const CustomerList = () => {
   const { t } = useTranslation();
 
-  const [data, setData] = useState<CustomerIntroducerQueryResponse | null>(null);
+  const [data, setData] = useState<CustomerIntroducerQueryResponse | null>(
+    null,
+  );
+
   const [loading, setLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [addCustomerModal, setAddCustomerModal] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
   const [activeTab, setActiveTab] = useState(0);
-  const [remainingCapacity, setRemainingCapacity] = useState(MAX_CUSTOMER_INTRODUCTIONS);
+
+  const [remainingCapacity, setRemainingCapacity] = useState(
+    MAX_CUSTOMER_INTRODUCTIONS,
+  );
+
   const [searchTerm, setSearchTerm] = useState('');
   const [fromDate, setFromDate] = useState<DateObject | null>(null);
   const [toDate, setToDate] = useState<DateObject | null>(null);
   const [statuses, setStatuses] = useState<ISelectOption[]>([]);
-    const [showRemoveButton, setShowRemoveButton] = useState(false);
+  const [showRemoveButton, setShowRemoveButton] = useState(false);
 
   const [appliedFilters, setAppliedFilters] = useState({
     searchTerm: '',
@@ -50,10 +59,10 @@ const CustomerList = () => {
     statuses: [] as number[],
   });
 
-  const formatDateForApi = (date: DateObject | null) => {
+  const formatDateForApi = useCallback((date: DateObject | null) => {
     if (!date) return '';
     return date.toDate().toISOString().split('T')[0];
-  };
+  }, []);
 
   const hasSelectedFilter =
     searchTerm.trim() !== '' ||
@@ -63,7 +72,9 @@ const CustomerList = () => {
 
   const getCustomers = useCallback(async () => {
     try {
-      const response = await customerIntroducerQueryApi({
+      setLoading(true);
+
+      const payload = {
         pageNumber: currentPage,
         pageSize: itemsPerPage,
         ...(appliedFilters.searchTerm && {
@@ -75,13 +86,25 @@ const CustomerList = () => {
         ...(appliedFilters.toDate && {
           toDate: appliedFilters.toDate,
         }),
-        ...(activeTab === 1 && appliedFilters.statuses.length > 0 && {
-          statuses: appliedFilters.statuses,
-        }),
-      });
+        ...(activeTab === 0
+          ? {
+              statuses: [0],
+            }
+          : {}),
+        ...(activeTab === 1 && appliedFilters.statuses.length > 0
+          ? {
+              statuses: appliedFilters.statuses,
+            }
+          : {}),
+      };
+
+      const response = await customerIntroducerQueryApi(payload);
+
       setData(response);
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   }, [currentPage, itemsPerPage, activeTab, appliedFilters]);
 
@@ -92,55 +115,26 @@ const CustomerList = () => {
         pageSize: 1,
         statuses: [0],
       });
-      const usedCapacity = response.totalCount;
-      setRemainingCapacity(Math.max(MAX_CUSTOMER_INTRODUCTIONS - usedCapacity, 0));
+
+      const usedCapacity = response.totalCount ?? 0;
+
+      setRemainingCapacity(
+        Math.max(MAX_CUSTOMER_INTRODUCTIONS - usedCapacity, 0),
+      );
     } catch (error) {
       console.error(error);
     }
   }, []);
 
-  const getInitialData = useCallback(async () => {
-    try {
-      if (activeTab === 0) {
-        const response = await customerIntroducerQueryApi({
-          pageNumber: 1,
-          pageSize: 1,
-          statuses: [0],
-        });
-
-        const usedCapacity = response.totalCount;
-
-        setRemainingCapacity(
-          Math.max(MAX_CUSTOMER_INTRODUCTIONS - usedCapacity, 0),
-        );
-      }
-
-      if (activeTab === 1) {
-        await customerIntroducerQueryApi({
-          pageNumber: 1,
-          pageSize: 1,
-        });
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }, [activeTab]);
   useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        setLoading(true);
-        await getInitialData();
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchInitialData();
-  }, [getInitialData]);
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getCustomers();
+  }, [getCustomers]);
 
   const handleFilter = () => {
     setShowRemoveButton(true);
     setCurrentPage(1);
+
     setAppliedFilters({
       searchTerm: searchTerm.trim(),
       fromDate: formatDateForApi(fromDate),
@@ -156,30 +150,37 @@ const CustomerList = () => {
     setToDate(null);
     setStatuses([]);
     setCurrentPage(1);
+
     setAppliedFilters({
       searchTerm: '',
       fromDate: '',
       toDate: '',
       statuses: [],
     });
+
     setShowRemoveButton(false);
   };
 
   const handleTabChange = (tab: number) => {
     if (tab === activeTab) return;
+
     setActiveTab(tab);
     setCurrentPage(1);
     setData(null);
+
     setSearchTerm('');
     setFromDate(null);
     setToDate(null);
     setStatuses([]);
+
     setAppliedFilters({
       searchTerm: '',
       fromDate: '',
       toDate: '',
       statuses: [],
     });
+
+    setShowRemoveButton(false);
   };
 
   const handlePreviousPage = () => {
@@ -200,6 +201,7 @@ const CustomerList = () => {
 
   const handlePageSizeChange = (count: number) => {
     if (count === itemsPerPage) return;
+
     setItemsPerPage(count);
     setCurrentPage(1);
   };
@@ -207,8 +209,14 @@ const CustomerList = () => {
   const handleDelete = async (id: string) => {
     try {
       setDeleteLoading(true);
+
       await customerIntroducerRemoveApi({ id });
-      await Promise.all([getCustomers(), getRemainingCapacity()]);
+
+      await getCustomers();
+
+      if (activeTab === 0) {
+        await getRemainingCapacity();
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -222,8 +230,19 @@ const CustomerList = () => {
 
   const handleExportExcel = () => {};
 
+  const handleCustomerIntroductionSuccess = async () => {
+    setAddCustomerModal(false);
+
+    await getCustomers();
+
+    if (activeTab === 0) {
+      await getRemainingCapacity();
+    }
+  };
+
   const totalPages = data?.totalPages ?? 1;
-  const hasData = Boolean(data?.items?.length);
+
+  const hasData = Array.isArray(data?.items) && data.items.length > 0;
 
   const paymentStatusOptions: ISelectOption[] = [
     { label: 'ثبت اولیه', value: '0' },
@@ -231,12 +250,6 @@ const CustomerList = () => {
     { label: 'حذف شده', value: '2' },
     { label: 'مشتری', value: '3' },
   ];
-
-  const handleCustomerIntroductionSuccess = async () => {
-    setAddCustomerModal(false);
-
-    await getCustomers();
-  };
 
   return (
     <ContentStateWrapper loading={loading} loadingText={t('home:page_loading')}>
@@ -279,6 +292,7 @@ const CustomerList = () => {
                 <span className='text-sm'>
                   {t('customerList:remaining_introduction_capacity')}
                 </span>
+
                 <span
                   className={`text-base font-bold ${
                     remainingCapacity === 0
@@ -288,8 +302,10 @@ const CustomerList = () => {
                 >
                   {remainingCapacity}
                 </span>
+
                 <span className='text-sm'>نفر</span>
               </div>
+
               <span className='pr-2 text-xs'>
                 از {MAX_CUSTOMER_INTRODUCTIONS} نفر
               </span>
@@ -335,9 +351,11 @@ const CustomerList = () => {
           />
         </div>
 
-        {!hasData ? (
+        {!loading && data !== null && !hasData && (
           <div className='mt-10 text-center'>{t('home:empty')}</div>
-        ) : (
+        )}
+
+        {!loading && hasData && (
           <>
             <CustomerListTable
               data={data!.items}
@@ -360,8 +378,10 @@ const CustomerList = () => {
             <div className='relative my-5 flex flex-col items-center gap-4 md:flex-row'>
               <div className='ml-auto flex items-center gap-2'>
                 <span className='text-sm text-gray-500'>نمایش:</span>
+
                 {PAGE_SIZE_OPTIONS.map((count) => {
                   const isDisabled = (data?.totalCount ?? 0) < count;
+
                   const isActive = itemsPerPage === count;
 
                   return (
