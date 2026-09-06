@@ -8,7 +8,10 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { useCustomerIntroductionStore } from '@/store/customerIntroduction/customerIntroduction.store';
-import { CustomerIntroductionFormValues } from './types';
+import {
+  CustomerIntroductionFormValues,
+  TCustomerIntroductionFormProps,
+} from './types';
 import { CUSTOMER_INTRODUCTION_DEFAULT_VALUES } from './constants';
 import { Button, Input, SpinnerDiv } from '@/shareComponent';
 import { useTranslation } from 'react-i18next';
@@ -19,10 +22,14 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { IUser } from '../layout/types';
 import { getCustomerIntroductionCaptcha } from './services/getCustomerIntroductionCaptcha';
+import { useRouter } from 'next/navigation';
 
 const CAPTCHA_EXPIRE_TIME = 2 * 60 * 1000;
 
-export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
+export const CustomerIntroductionForm = ({
+  name,
+  onSuccess,
+}: TCustomerIntroductionFormProps) => {
   const { t } = useTranslation();
   const rules = validationRules(t);
 
@@ -34,7 +41,7 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
   const [captchaImage, setCaptchaImage] = useState<string | null>(null);
   const [captchaLoading, setCaptchaLoading] = useState(false);
   const [captchaExpired, setCaptchaExpired] = useState(false);
-
+  const router = useRouter();
   const captchaTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const {
@@ -125,15 +132,21 @@ export const CustomerIntroductionForm = ({ name }: { name?: string }) => {
 
     if (success) {
       reset(CUSTOMER_INTRODUCTION_DEFAULT_VALUES);
-
       setCaptchaImage(null);
       setCaptchaExpired(true);
-
       if (captchaTimerRef.current) {
         clearTimeout(captchaTimerRef.current);
       }
-
-      toast.success('اطلاعات مشتری با موفقیت ثبت شد.');
+      if (name === 'addCustomer') {
+        toast.success('اطلاعات مشتری با موفقیت ثبت شد.');
+        onSuccess?.();
+      } else {
+        toast.success('اطلاعات مشتری با موفقیت ثبت شد.', {
+          onClose: () => {
+            router.push('/panel/customer-list');
+          },
+        });
+      }
     }
   };
 

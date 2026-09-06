@@ -15,3 +15,7 @@ export interface CustomerIntroductionResponse {
   data?: unknown;
 }
 
+export type TCustomerIntroductionFormProps = {
+  name?: string;
+  onSuccess?: () => void;
+};

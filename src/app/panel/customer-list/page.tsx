@@ -202,10 +202,17 @@ const CustomerList = () => {
   const hasData = Boolean(data?.items?.length);
 
   const paymentStatusOptions: ISelectOption[] = [
-    { label: 'فعال', value: '0' },
-    { label: 'تکمیل شده', value: '1' },
-    { label: 'رد شده', value: '2' },
+    { label: 'ثبت اولیه', value: '0' },
+    { label: 'منقضی شده', value: '1' },
+    { label: 'حذف شده', value: '2' },
+    { label: ' مشتری', value: '3' },
   ];
+
+  const handleCustomerIntroductionSuccess = async () => {
+    setAddCustomerModal(false);
+
+    await getCustomers();
+  };
 
   return (
     <ContentStateWrapper loading={loading} loadingText={t('home:page_loading')}>
@@ -250,14 +257,18 @@ const CustomerList = () => {
                 </span>
                 <span
                   className={`text-base font-bold ${
-                    remainingCapacity === 0 ? 'text-red-500' : 'text-(--primary)'
+                    remainingCapacity === 0
+                      ? 'text-red-500'
+                      : 'text-(--primary)'
                   }`}
                 >
                   {remainingCapacity}
                 </span>
                 <span className='text-sm'>نفر</span>
               </div>
-              <span className='pr-2 text-xs'>از {MAX_CUSTOMER_INTRODUCTIONS} نفر</span>
+              <span className='pr-2 text-xs'>
+                از {MAX_CUSTOMER_INTRODUCTIONS} نفر
+              </span>
             </div>
 
             <Button
@@ -369,7 +380,10 @@ const CustomerList = () => {
         title={t('customerList:new_customer_introduction')}
         onClose={() => setAddCustomerModal(false)}
       >
-        <CustomerIntroductionForm name='addCustomer' />
+        <CustomerIntroductionForm
+          name='addCustomer'
+          onSuccess={handleCustomerIntroductionSuccess}
+        />
       </ResponsiveModal>
     </ContentStateWrapper>
   );

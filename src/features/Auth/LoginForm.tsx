@@ -36,10 +36,10 @@ export default function LoginForm() {
         </div>
 
         <h2 className='text-[18px] font-bold text-center mb-2 text-(--text-muted) transition-colors'>
-          پنل مدیریت معرف مشتری
+          باشگاه معرفین دنتالیت
         </h2>
         <p className=' text-center mb-8 font-medium text-[14px] transition-colors'>
-          {t('login:user_name_pass')}
+          شماره موبایل خود را جهت عضویت رایگان وارد کنید
         </p>
 
         <div className='mb-4'>

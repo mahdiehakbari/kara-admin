@@ -32,31 +32,22 @@ const CustomerListTable = ({
             </tr>
           </thead>
 
-          <tbody className='divide-y divide-border-color'>
+          <tbody className='divide-y divide-(--border-color)'>
             {data?.map((customer, index) => (
               <tr key={customer.id}>
                 <td className='p-4 text-sm'>
                   {toPersianNumber(
-                    (
-                      index +
-                      1 +
-                      (currentPage - 1) * pageSize
-                    ).toString()
+                    (index + 1 + (currentPage - 1) * pageSize).toString(),
                   )}
                 </td>
 
-                <td className='p-4 text-sm'>
-                  {customer.firstName || '-'}
-                </td>
+                <td className='p-4 text-sm'>{customer.firstName || '-'}</td>
 
-                <td className='p-4 text-sm'>
-                  {customer.lastName || '-'}
-                </td>
+                <td className='p-4 text-sm'>{customer.lastName || '-'}</td>
 
                 <td className='p-4 text-sm'>
                   {customer.phoneNumber
-                    ? toPersianNumber
-                    (customer.phoneNumber)
+                    ? toPersianNumber(customer.phoneNumber)
                     : '-'}
                 </td>
 
@@ -71,34 +62,38 @@ const CustomerListTable = ({
                     ? toPersianNumber(customer.persianExpiresAt)
                     : '-'}
                 </td>
-                {activeTab==1&&    
-                <td className="p-4 text-sm">
-                {(() => {
-                  const status = getStatusStyle(customer.status);
+                {activeTab == 1 && (
+                  <td className='p-4 text-sm'>
+                    {(() => {
+                      const status = getStatusStyle(customer.status);
 
-                  return (
-                    <span
-                      className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${status.className}`}
+                      return (
+                        <span
+                          className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${status.className}`}
+                        >
+                          {status.label}
+                        </span>
+                      );
+                    })()}
+                  </td>
+                )}
+
+                {activeTab == 0 && (
+                  <td className='p-4 text-sm'>
+                    <button
+                      type='button'
+                      onClick={() => onDelete(customer.id)}
+                      title={t('customerList:delete')}
+                      className='p-2 rounded-lg transition-colors hover:bg-red-50 text-red-500 hover:text-red-600'
                     >
-                      {status.label}
-                    </span>
-                  );
-                })()}
-              </td>}
-          
-
-               
-                <td className='p-4 text-sm'>
-                  <button
-                    type='button'
-                    onClick={() => onDelete(customer.id)}
-                    title={t('customerList:delete')}
-                    className='p-2 rounded-lg transition-colors hover:bg-red-50 text-red-500 hover:text-red-600'
-                  >
-                    {deleteLoading==true?<SpinnerDiv/>:<Trash2 size={18} />}
-                    
-                  </button>
-                </td>
+                      {deleteLoading == true ? (
+                        <SpinnerDiv />
+                      ) : (
+                        <Trash2 size={18} />
+                      )}
+                    </button>
+                  </td>
+                )}
               </tr>
             ))}
           </tbody>

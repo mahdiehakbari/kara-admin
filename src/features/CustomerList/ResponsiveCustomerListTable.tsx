@@ -24,63 +24,48 @@ const ResponsiveCustomerListTable = ({
             key={customer.id}
             className='rounded-xl border border-(--border-color) shadow-sm p-4 bg-(--surface)'
           >
-          
             <div className='flex items-center justify-between mb-3'>
               <div className='flex items-center gap-3'>
-                <div className='text-xs '>
-                  {t('customerList:row')}
-                </div>
+                <div className='text-xs '>{t('customerList:row')}</div>
 
                 <div className='text-sm font-medium'>
                   {toPersianNumber(
-                    (
-                      index +
-                      1 +
-                      (currentPage - 1) * pageSize
-                    ).toString(),
+                    (index + 1 + (currentPage - 1) * pageSize).toString(),
                   )}
                 </div>
               </div>
 
-             
-              <button
-                type='button'
-                onClick={() => onDelete(customer.id)}
-                title={t('customerList:delete')}
-                className='p-2 rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors'
-              >
-              {deleteLoading==true?<SpinnerDiv/>:<Trash2 size={18} />}
-              </button>
+              {activeTab == 0 && (
+                <button
+                  type='button'
+                  onClick={() => onDelete(customer.id)}
+                  title={t('customerList:delete')}
+                  className='p-2 rounded-lg text-red-500 hover:bg-red-50 hover:text-red-600 transition-colors'
+                >
+                  {deleteLoading == true ? (
+                    <SpinnerDiv />
+                  ) : (
+                    <Trash2 size={18} />
+                  )}
+                </button>
+              )}
             </div>
 
             <div className='space-y-3 border-t border-(--border-color) pt-3'>
-             
               <div className='flex justify-between items-center gap-4'>
-                <span className='text-xs'>
-                  {t('customerList:first_name')}
-                </span>
+                <span className='text-xs'>{t('customerList:first_name')}</span>
 
-                <span className='text-sm'>
-                  {customer.firstName || '-'}
-                </span>
+                <span className='text-sm'>{customer.firstName || '-'}</span>
               </div>
 
-              
               <div className='flex justify-between items-center gap-4'>
-                <span className='text-xs'>
-                  {t('customerList:last_name')}
-                </span>
+                <span className='text-xs'>{t('customerList:last_name')}</span>
 
-                <span className='text-sm'>
-                  {customer.lastName || '-'}
-                </span>
+                <span className='text-sm'>{customer.lastName || '-'}</span>
               </div>
 
-              
               <div className='flex justify-between items-center gap-4'>
-                <span className='text-xs'>
-                  {t('customerList:mobile')}
-                </span>
+                <span className='text-xs'>{t('customerList:mobile')}</span>
 
                 <span className='text-sm'>
                   {customer.phoneNumber
@@ -89,7 +74,6 @@ const ResponsiveCustomerListTable = ({
                 </span>
               </div>
 
-              
               <div className='flex justify-between items-center gap-4'>
                 <span className='text-xs'>
                   {t('customerList:introduction_date')}
@@ -102,7 +86,6 @@ const ResponsiveCustomerListTable = ({
                 </span>
               </div>
 
-              
               <div className='flex justify-between items-center gap-4'>
                 <span className='text-xs'>
                   {t('customerList:expiration_date')}
@@ -115,11 +98,8 @@ const ResponsiveCustomerListTable = ({
                 </span>
               </div>
 
-         
-           <div className="flex items-center justify-between gap-4">
-                <span className="text-xs">
-                  {t('customerList:status')}
-                </span>
+              <div className='flex items-center justify-between gap-4'>
+                <span className='text-xs'>{t('customerList:status')}</span>
 
                 {(() => {
                   const status = getStatusStyle(customer.status);
@@ -132,7 +112,7 @@ const ResponsiveCustomerListTable = ({
                     </span>
                   );
                 })()}
-            </div>
+              </div>
             </div>
           </div>
         ))}

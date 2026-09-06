@@ -72,7 +72,7 @@ export default function RootLayout({
     <html lang='fa' dir='rtl' className='font-fa' suppressHydrationWarning>
       <body suppressHydrationWarning>
         <I18nProvider>
-          <ThemeProvider defaultTheme='dark'>
+          <ThemeProvider defaultTheme='light'>
             <AuthChecker />
             <LayoutShell>{children}</LayoutShell>
 

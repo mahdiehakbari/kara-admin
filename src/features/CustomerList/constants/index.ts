@@ -17,10 +17,14 @@ export const getThItems = (activeTab: number) => {
     });
   }
 
-  items.push({
-    id: 8,
-    label: i18n.t('customerList:actions'),
-  });
+  if (activeTab === 0) {
+    items.push({
+      id: 8,
+      label: i18n.t('customerList:actions'),
+    });
+  }
+
+
 
   return items;
 };
