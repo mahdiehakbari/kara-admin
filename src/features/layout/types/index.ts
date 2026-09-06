@@ -14,4 +14,5 @@ export interface IUser {
   address: string | null;
   customerId: string | null;
   merchantId: string | null;
+  userTypes: string | null;
 }
