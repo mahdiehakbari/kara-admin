@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:prod": "cross-env NEXT_PUBLIC_API_BASE_URL=https://api.sepas-pay.com/api next build",
+    "build:prod": "cross-env NEXT_PUBLIC_API_BASE_URL=https://sandbox1.karauniversal.ir/api next build",
     "build:staging": "cross-env NEXT_PUBLIC_API_BASE_URL=https://sandbox1.karauniversal.ir/ next build",
     "start": "next start"
   },
