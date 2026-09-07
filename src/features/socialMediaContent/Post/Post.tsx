@@ -6,9 +6,10 @@ import DownloadCard from "./DownloadCard";
 import PostInfo from "./PostInfo";
 import { FaEye } from "react-icons/fa";
 import PhoneFrame from "./PhoneFrame";
+import { captionText } from '../constants';
 
 const Post = () => {
-  const [caption, setCaption] = useState('');
+  const [caption, setCaption] = useState(captionText);
 
   const handleDownload = () => {
     const link = document.createElement('a');

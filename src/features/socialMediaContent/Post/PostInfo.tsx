@@ -16,11 +16,7 @@ interface Props {
   setCaption: (value: string) => void;
 }
 
-const CheckboxOption = (props: OptionProps<ISelectOption, true>) => (
-  <components.Option {...props}>
-    <input type='checkbox' checked={props.isSelected} readOnly /> {props.label}
-  </components.Option>
-);
+
 
 const PostInfo = ({ caption, setCaption }: Props) => {
   const token = Cookies.get('token');
@@ -58,11 +54,6 @@ const PostInfo = ({ caption, setCaption }: Props) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    getCaption();
-  }, []);
 
   const copyCaption = async () => {
     await navigator.clipboard.writeText(caption);
