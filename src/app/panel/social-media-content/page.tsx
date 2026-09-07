@@ -26,7 +26,7 @@ const SocialMediaContent = () => {
       <div className='md:flex justify-between bg-(--primary) p-6 rounded-2xl shadow-xl mb-20'>
         <div className='w-full md:w-75 shrink-0 order-1 md:order-2 flex justify-center'>
           <Image
-            src='/assets/icons/social-medi.jpg'
+            src='/assets/icons/social-medi.png'
             alt='Social Media Content'
             width={450}
             height={300}
