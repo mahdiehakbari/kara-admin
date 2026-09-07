@@ -18,7 +18,7 @@ export function useLogin() {
     try {
       const resp = await api.post(SEND_OTP, {
         phoneNumber,
-        otpMode: 0,
+        otpMode: 2,
       });
 
       return resp;
