@@ -16,6 +16,8 @@ export const Accordion = () => {
 
   return (
     <div className='relative overflow-hidden rounded-[28px] border border-(--border-color) bg-(--surface) px-6 py-8 md:px-10 shadow-[0_18px_40px_rgba(15,23,42,0.05)]'>
+      <div className='pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-(--primary) via-transparent to-(--primary) opacity-80' />
+
       <div className='mb-8 text-center'>
         <p className='inline-flex items-center rounded-full bg-(--light-primary) px-3 py-1 text-[12px] font-semibold text-(--primary) mb-3 border border-(--primary-border)'>
           راهنمای سریع

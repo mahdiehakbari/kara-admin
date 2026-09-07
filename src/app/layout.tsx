@@ -18,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ? 'پنل مدیریت دنتالیت'
       : userType === 'Financial'
         ? 'پنل مدیریت مالی'
-        : 'پنل معرف مشتری';
+        : 'باشگاه معرفین دنتالیت';
   return {
     metadataBase: new URL('https://example.com'),
     title: {
