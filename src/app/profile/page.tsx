@@ -1,71 +1,142 @@
 
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { AxiosError } from 'axios';
-import { Button, SpinnerDiv } from '@/shareComponent';
-import { updateCustomerIntroducerProfile } from '@/features';
+import { Button, Captcha, SpinnerDiv } from '@/shareComponent';
+import {
+  getCustomerIntroductionCaptcha,
+  updateCustomerIntroducerProfile,
+} from '@/features';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import { useAuthStore } from '@/store/Auth/authStore';
 import { toEnglishDigits } from '@/features/Auth/utils/toEnglishDigits';
 
-
 interface IProfileFormValues {
   nationalId: string;
   cardNumber: string;
+  captchaCode: string;
+  captchaId: string;
 }
 
 const Profile = () => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
-  const {  setAuth } = useAuthStore();
+  const [captchaImage, setCaptchaImage] = useState<string | null>(null);
+  const [captchaLoading, setCaptchaLoading] = useState(false);
+  const [captchaExpired, setCaptchaExpired] = useState(false);
 
+  const captchaTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const router = useRouter();
+  const { setAuth } = useAuthStore();
+  const CAPTCHA_EXPIRE_TIME = 2 * 60 * 1000;
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, touchedFields, isSubmitted },
+    setValue,
   } = useForm<IProfileFormValues>({
     mode: 'onChange',
+    defaultValues: {
+      nationalId: '',
+      cardNumber: '',
+      captchaCode: '',
+      captchaId: '',
+    },
   });
 
-const onSubmit = async (data: IProfileFormValues) => {
-  setLoading(true);
+  const loadCaptcha = async () => {
+    try {
+      setCaptchaLoading(true);
+      setCaptchaExpired(false);
 
-  try {
-    const response = await updateCustomerIntroducerProfile({
-      nationalId: data.nationalId,
-      cardNumber: data.cardNumber.replace(/-/g, ''),
-    });
+      const captcha = await getCustomerIntroductionCaptcha(1);
 
-    const { token, user, expiresAt } = response.data;
-    setAuth(token, user, expiresAt);
+      const imageSrc = `data:image/png;base64,${captcha.captchaImage}`;
 
-    Cookies.set('token', token);
-    Cookies.set('expiresAt', expiresAt);
-    Cookies.set('isLoggedIn', 'true');
+      setCaptchaImage(imageSrc);
 
-    localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+      setValue('captchaId', captcha.id, {
+        shouldValidate: false,
+      });
 
-    toast.success('اطلاعات پروفایل با موفقیت ثبت شد.');
+      setValue('captchaCode', '', {
+        shouldValidate: false,
+      });
 
-    router.push('/panel');
+      if (captchaTimerRef.current) {
+        clearTimeout(captchaTimerRef.current);
+      }
+
+      captchaTimerRef.current = setTimeout(() => {
+        setCaptchaImage(null);
+        setCaptchaExpired(true);
+
+        setValue('captchaId', '', {
+          shouldValidate: false,
+        });
+
+        setValue('captchaCode', '', {
+          shouldValidate: false,
+        });
+      }, CAPTCHA_EXPIRE_TIME);
+    } catch (error) {
+      console.error('Captcha error:', error);
+      toast.error('دریافت تصویر کپچا با خطا مواجه شد.');
+    } finally {
+      setCaptchaLoading(false);
+    }
+  };
+
+  const onSubmit = async (data: IProfileFormValues) => {
+    setLoading(true);
+
+    try {
+      const response = await updateCustomerIntroducerProfile({
+        nationalId: data.nationalId,
+        cardNumber: data.cardNumber.replace(/-/g, ''),
+        captchaCode: data.captchaCode,
+        captchaId: data.captchaId,
+      });
+
+      const { token, user, expiresAt } = response.data;
+      setAuth(token, user, expiresAt);
+
+      Cookies.set('token', token);
+      Cookies.set('expiresAt', expiresAt);
+      Cookies.set('isLoggedIn', 'true');
+
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+
+      toast.success('اطلاعات پروفایل با موفقیت ثبت شد.');
+
+      router.push('/panel');
     } catch (err) {
       const error = err as AxiosError<{
         message?: string;
       }>;
 
       toast.error(
-        error.response?.data?.message ||
-          'ثبت اطلاعات با خطا مواجه شد.',
+        error.response?.data?.message || 'ثبت اطلاعات با خطا مواجه شد.',
       );
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadCaptcha();
+
+    return () => {
+      if (captchaTimerRef.current) {
+        clearTimeout(captchaTimerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-(--background) px-4'>
@@ -93,7 +164,6 @@ const onSubmit = async (data: IProfileFormValues) => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-
           <div className='mb-5'>
             <label
               htmlFor='nationalId'
@@ -102,14 +172,24 @@ const onSubmit = async (data: IProfileFormValues) => {
               کد ملی
             </label>
 
-            <input 
-            id='nationalId' 
-            type='text' 
-            inputMode='numeric' 
-            maxLength={10}
-            placeholder='کد ملی را وارد کنید' 
-            {...register('nationalId', { required: 'وارد کردن کد ملی الزامی است.', setValueAs: (value) => toEnglishDigits(value), validate: (value) => { const nationalId = toEnglishDigits(value); return ( /^[0-9]{10}$/.test(nationalId) || 'کد ملی باید ۱۰ رقم باشد.' ); }, })} 
-            className=' w-full px-4 py-2.5 border rounded-lg outline-none bg-(--surface) border-(--border-color) text-(--text-muted) placeholder:text-text-disabled focus:border-(--primary) transition-colors ' />
+            <input
+              id='nationalId'
+              type='text'
+              inputMode='numeric'
+              maxLength={10}
+              placeholder='کد ملی را وارد کنید'
+              {...register('nationalId', {
+                required: 'وارد کردن کد ملی الزامی است.',
+                setValueAs: (value) => toEnglishDigits(value),
+                validate: (value) => {
+                  const nationalId = toEnglishDigits(value);
+                  return (
+                    /^[0-9]{10}$/.test(nationalId) || 'کد ملی باید ۱۰ رقم باشد.'
+                  );
+                },
+              })}
+              className=' w-full px-4 py-2.5 border rounded-lg outline-none bg-(--surface) border-(--border-color) text-(--text-muted) placeholder:text-text-disabled focus:border-(--primary) transition-colors '
+            />
 
             {errors.nationalId && (
               <p className='text-red-500 text-sm mt-1'>
@@ -123,40 +203,35 @@ const onSubmit = async (data: IProfileFormValues) => {
               htmlFor='cardNumber'
               className='block text-sm font-medium text-(--text-muted) mb-2'
             >
-           شماره کارت بانکی جهت واریز مبالغ پاداش معرفی
+              شماره کارت بانکی جهت واریز مبالغ پاداش معرفی
             </label>
 
-                <input
-                id='cardNumber'
-                type='text'
-                inputMode='numeric'
-                maxLength={19}
-                placeholder='6037-9918-1234-5678'
-                {...register('cardNumber', {
-                    required: 'وارد کردن شماره کارت الزامی است.',
-                    validate: (value) => {
-                    const cardNumber = value.replace(/-/g, '');
+            <input
+              id='cardNumber'
+              type='text'
+              inputMode='numeric'
+              maxLength={19}
+              placeholder='6037-9918-1234-5678'
+              {...register('cardNumber', {
+                required: 'وارد کردن شماره کارت الزامی است.',
+                validate: (value) => {
+                  const cardNumber = value.replace(/-/g, '');
 
-                    if (!/^\d{16}$/.test(cardNumber)) {
-                        return 'شماره کارت باید ۱۶ رقم باشد.';
-                    }
+                  if (!/^\d{16}$/.test(cardNumber)) {
+                    return 'شماره کارت باید ۱۶ رقم باشد.';
+                  }
 
-                    return true;
-                    },
-                    onChange: (e) => {
-                    const value = e.target.value
-                        .replace(/\D/g, '')
-                        .slice(0, 16);
+                  return true;
+                },
+                onChange: (e) => {
+                  const value = e.target.value.replace(/\D/g, '').slice(0, 16);
 
-                    const formattedValue = value.replace(
-                        /(\d{4})(?=\d)/g,
-                        '$1-',
-                    );
+                  const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1-');
 
-                    e.target.value = formattedValue;
-                    },
-                })}
-                className='
+                  e.target.value = formattedValue;
+                },
+              })}
+              className='
                     w-full
                     px-4
                     py-2.5
@@ -170,14 +245,27 @@ const onSubmit = async (data: IProfileFormValues) => {
                     focus:border-(--primary)
                     transition-colors
                 '
-                />
-
+            />
 
             {errors.cardNumber && (
               <p className='text-red-500 text-sm mt-1'>
                 {errors.cardNumber.message}
               </p>
             )}
+            <div className='mt-6'>
+              <Captcha
+                captchaImage={captchaImage}
+                captchaExpired={captchaExpired}
+                captchaLoading={captchaLoading}
+                loadCaptcha={loadCaptcha}
+                register={register}
+                errors={errors}
+                touchedFields={touchedFields}
+                isSubmitted={isSubmitted}
+                name={'captchaCode'}
+                differentwith='profile'
+              />
+            </div>
           </div>
 
           <Button

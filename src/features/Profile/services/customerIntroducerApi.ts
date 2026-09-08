@@ -5,6 +5,8 @@ import { CUSTOMER_INTRODUCER_PROFILE } from '@/config/api_address.config';
 export interface ICustomerIntroducerProfile {
   nationalId: string;
   cardNumber: string;
+  captchaId: string;
+  captchaCode: string;
 }
 
 export const updateCustomerIntroducerProfile = (
