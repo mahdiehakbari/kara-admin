@@ -14,8 +14,10 @@ export function Input<T extends FieldValues>({
   defaultValue,
   disabled = false,
   maxLength,
+  touchedFields,
+  isSubmitted,
 }: InputProps<T>) {
-  const hasError = !!errors[name];
+  const hasError = !!errors[name] && (!!touchedFields?.[name] || isSubmitted);
   const isRequired = rules?.required !== false;
 
   const maxLengthMap: Partial<Record<keyof IProfileFormValues, number>> = {

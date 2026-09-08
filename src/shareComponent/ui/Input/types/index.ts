@@ -70,4 +70,6 @@ export type InputProps<T extends FieldValues> = {
   full?: boolean;
   disabled?: boolean;
   maxLength?: number;
+  touchedFields?: Partial<Record<keyof T, boolean>>;
+  isSubmitted?: boolean;
 };
