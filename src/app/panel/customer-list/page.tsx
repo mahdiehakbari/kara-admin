@@ -11,6 +11,7 @@ import {
   ListFilter,
   Paginate,
   ResponsiveModal,
+  useExportExcel,
 } from '@/shareComponent';
 
 import {
@@ -51,7 +52,7 @@ const CustomerList = () => {
   const [toDate, setToDate] = useState<DateObject | null>(null);
   const [statuses, setStatuses] = useState<ISelectOption[]>([]);
   const [showRemoveButton, setShowRemoveButton] = useState(false);
-
+  const { exportExcel } = useExportExcel();
   const [appliedFilters, setAppliedFilters] = useState({
     searchTerm: '',
     fromDate: '',
@@ -228,8 +229,6 @@ const CustomerList = () => {
     setAddCustomerModal(true);
   };
 
-  const handleExportExcel = () => {};
-
   const handleCustomerIntroductionSuccess = async () => {
     setAddCustomerModal(false);
 
@@ -250,6 +249,38 @@ const CustomerList = () => {
     { label: 'حذف شده', value: '2' },
     { label: 'مشتری', value: '3' },
   ];
+
+  const handleExportExcel = () => {
+    const items = data?.items ?? [];
+
+    exportExcel({
+      data: items,
+      fileName: `customer-list-${new Date().toISOString().slice(0, 10)}`,
+      sheetName: 'customers',
+      mapper: (customer, index) => ({
+        ردیف: index + 1 + (currentPage - 1) * itemsPerPage,
+
+        نام: `${customer.firstName ?? ''}`,
+        'نام خانوادگی': `${customer.lastName ?? ''}`,
+
+        'شماره موبایل': customer.phoneNumber ?? '-',
+
+        'تاریخ معرفی': customer.persianCreatedAt ?? '-',
+        'تاریخ اتمام مهلت': customer.persianExpiresAt ?? '-',
+
+        وضعیت:
+          customer.status === 0
+            ? 'ثبت اولیه'
+            : customer.status === 1
+              ? 'منقضی شده'
+              : customer.status === 2
+                ? 'حذف شده'
+                : customer.status === 3
+                  ? 'مشتری'
+                  : '-',
+      }),
+    });
+  };
 
   return (
     <ContentStateWrapper loading={loading} loadingText={t('home:page_loading')}>

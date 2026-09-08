@@ -12,3 +12,4 @@ export { ListFilter } from './lib/ListFilter/ListFilter';
 export { default as NestedMultiSelect } from './ui/NestedMultiSelect/NestedMultiSelect';
 export { Accordion } from './ui/Accordion/Accordion';
 export { formatTime } from './lib/formatTime/index';
+export { useExportExcel } from './lib/ExportExcel/useExportExcel';
