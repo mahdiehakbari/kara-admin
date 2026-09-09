@@ -23,6 +23,7 @@ import { useEffect, useRef, useState } from 'react';
 import { IUser } from '../layout/types';
 import { getCustomerIntroductionCaptcha } from './services/getCustomerIntroductionCaptcha';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 const CAPTCHA_EXPIRE_TIME = 2 * 60 * 1000;
 
@@ -41,6 +42,7 @@ export const CustomerIntroductionForm = ({
   const [captchaImage, setCaptchaImage] = useState<string | null>(null);
   const [captchaLoading, setCaptchaLoading] = useState(false);
   const [captchaExpired, setCaptchaExpired] = useState(false);
+  const [captchaRefresh, setCaptchaRefresh] = useState(0);
   const router = useRouter();
   const captchaTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -78,6 +80,7 @@ export const CustomerIntroductionForm = ({
     try {
       setCaptchaLoading(true);
       setCaptchaExpired(false);
+      setCaptchaImage(null);
 
       const captcha = await getCustomerIntroductionCaptcha();
 
@@ -86,11 +89,12 @@ export const CustomerIntroductionForm = ({
       setCaptchaImage(imageSrc);
 
       setValue('captchaId', captcha.id, {
-        shouldValidate: true,
+        shouldValidate: false,
       });
 
       setValue('captchaCode', '', {
-        shouldValidate: true,
+        shouldValidate: false,
+        shouldDirty: false,
       });
 
       if (captchaTimerRef.current) {
@@ -101,8 +105,13 @@ export const CustomerIntroductionForm = ({
         setCaptchaImage(null);
         setCaptchaExpired(true);
 
-        setValue('captchaId', '');
-        setValue('captchaCode', '');
+        setValue('captchaId', '', {
+          shouldValidate: false,
+        });
+
+        setValue('captchaCode', '', {
+          shouldValidate: false,
+        });
       }, CAPTCHA_EXPIRE_TIME);
     } catch (error) {
       console.error('Captcha error:', error);
@@ -111,6 +120,7 @@ export const CustomerIntroductionForm = ({
       setCaptchaLoading(false);
     }
   };
+
   useEffect(() => {
     loadCaptcha();
 
@@ -129,15 +139,34 @@ export const CustomerIntroductionForm = ({
       return;
     }
 
-    const success = await submitCustomerIntroduction(values);
+    try {
+      const success = await submitCustomerIntroduction(values);
 
-    if (success) {
+      if (!success) {
+        setValue('captchaCode', '', {
+          shouldValidate: false,
+          shouldDirty: false,
+        });
+
+        setValue('captchaId', '', {
+          shouldValidate: false,
+          shouldDirty: false,
+        });
+
+        setCaptchaRefresh((prev) => prev + 1);
+
+        return;
+      }
+
       reset(CUSTOMER_INTRODUCTION_DEFAULT_VALUES);
+
       setCaptchaImage(null);
       setCaptchaExpired(true);
+
       if (captchaTimerRef.current) {
         clearTimeout(captchaTimerRef.current);
       }
+
       if (name === 'addCustomer') {
         toast.success('اطلاعات مشتری با موفقیت ثبت شد.');
         onSuccess?.();
@@ -148,8 +177,33 @@ export const CustomerIntroductionForm = ({
           },
         });
       }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast.error(
+          error.response?.data?.message || 'ثبت اطلاعات با خطا مواجه شد.',
+        );
+      } else {
+        toast.error('ثبت اطلاعات با خطا مواجه شد.');
+      }
+      setValue('captchaCode', '', {
+        shouldValidate: false,
+        shouldDirty: false,
+      });
+
+      setValue('captchaId', '', {
+        shouldValidate: false,
+        shouldDirty: false,
+      });
+
+      setCaptchaRefresh((prev) => prev + 1);
     }
   };
+  useEffect(() => {
+    if (captchaRefresh === 0) return;
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadCaptcha();
+  }, [captchaRefresh]);
 
   return (
     <form

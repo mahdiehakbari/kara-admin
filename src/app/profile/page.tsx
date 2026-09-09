@@ -4,7 +4,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { AxiosError } from 'axios';
+import axios, { AxiosError } from 'axios';
 import { Button, Captcha, SpinnerDiv } from '@/shareComponent';
 import {
   getCustomerIntroductionCaptcha,
@@ -27,7 +27,7 @@ const Profile = () => {
   const [captchaImage, setCaptchaImage] = useState<string | null>(null);
   const [captchaLoading, setCaptchaLoading] = useState(false);
   const [captchaExpired, setCaptchaExpired] = useState(false);
-
+  const [captchaRefresh, setCaptchaRefresh] = useState(0);
   const captchaTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const router = useRouter();
   const { setAuth } = useAuthStore();
@@ -83,8 +83,11 @@ const Profile = () => {
         });
       }, CAPTCHA_EXPIRE_TIME);
     } catch (error) {
-      console.error('Captcha error:', error);
-      toast.error('دریافت تصویر کپچا با خطا مواجه شد.');
+      if (axios.isAxiosError(error)) {
+        toast.error(
+          error.response?.data?.message || 'دریافت تصویر کپچا با خطا مواجه شد.',
+        );
+      }
     } finally {
       setCaptchaLoading(false);
     }
@@ -122,10 +125,19 @@ const Profile = () => {
       toast.error(
         error.response?.data?.message || 'ثبت اطلاعات با خطا مواجه شد.',
       );
+
+      setCaptchaRefresh((prev) => prev + 1);
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (captchaRefresh === 0) return;
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadCaptcha();
+  }, [captchaRefresh]);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
