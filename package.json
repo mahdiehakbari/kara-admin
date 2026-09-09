@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:prod": "cross-env NEXT_PUBLIC_API_BASE_URL=https://sandbox1.karauniversal.ir/api next build",
-    "build:staging": "cross-env NEXT_PUBLIC_API_BASE_URL=https://sandbox1.karauniversal.ir/ next build",
+    "build:staging": "cross-env NEXT_PUBLIC_API_BASE_URL=https://sandbox1.karauniversal.ir/api next build",
     "start": "next start"
   },
   "dependencies": {
@@ -17,7 +17,7 @@
     "i18next-browser-languagedetector": "^8.2.1",
     "js-cookie": "^3.0.8",
     "lucide-react": "^1.33.0",
-    "next": "16.3.1",
+    "next": "^16.3.4",
     "qs": "^6.16.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
