@@ -127,10 +127,16 @@ const CustomerList = () => {
     }
   }, []);
 
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    getCustomers();
-  }, [getCustomers]);
+
+useEffect(() => {
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  getCustomers();
+}, [getCustomers]);
+
+useEffect(() => {
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  getRemainingCapacity();
+}, [getRemainingCapacity]);
 
   const handleFilter = () => {
     setShowRemoveButton(true);
