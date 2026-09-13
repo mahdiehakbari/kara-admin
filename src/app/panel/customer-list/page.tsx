@@ -271,8 +271,8 @@ useEffect(() => {
 
         'شماره موبایل': customer.phoneNumber ?? '-',
 
-        'تاریخ معرفی': customer.persianCreatedAt ?? '-',
-        'تاریخ اتمام مهلت': customer.persianExpiresAt ?? '-',
+        'تاریخ ارسال دعوت نامه': customer.persianCreatedAt ?? '-',
+        'تاریخ اتمام دعوت نامه': customer.persianExpiresAt ?? '-',
 
         وضعیت:
           customer.status === 0

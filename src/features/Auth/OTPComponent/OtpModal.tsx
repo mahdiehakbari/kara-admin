@@ -71,7 +71,7 @@ const { otp, setOtp, isSubmitting, error, handleSubmit } =
             alt='close-button'
             width={24}
             height={24}
-            className='cursor-pointer hover:opacity-80'
+            className='cursor-pointer icon-invert'
           />
         </button>
 

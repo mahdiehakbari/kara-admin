@@ -140,7 +140,7 @@ export const ListFilter = ({
               alt='calendar'
               width={20}
               height={20}
-              className=''
+              className='icon-invert'
             />
           </div>
         </div>
@@ -722,7 +722,7 @@ export const ListFilter = ({
               name == 'AccountingReport'
                 ? 'از تاریخ'
                 : name == 'customerList'
-                  ? 'از تاریخ معرفی'
+                  ? 'از تاریخ ارسال دعوت نامه'
                   : 'از تاریخ تراکنش',
               name != 'settlement' ? today : undefined,
             )}
@@ -733,7 +733,7 @@ export const ListFilter = ({
               name == 'AccountingReport'
                 ? 'تا تاریخ'
                 : name == 'customerList'
-                  ? 'تا تاریخ معرفی'
+                  ? 'تا تاریخ ارسال دعوت نامه'
                   : 'تا تاریخ تراکنش',
               name != 'settlement' ? today : undefined,
             )}

@@ -296,3 +296,6 @@ html.font-en {
 .dark .icon-invert {
   filter: brightness(0) invert(1);
 }
+.icon-invert {
+  filter: none;
+}

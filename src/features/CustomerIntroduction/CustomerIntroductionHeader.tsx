@@ -21,7 +21,7 @@ export const CustomerIntroductionHeader = () => {
         </h1>
 
         <p className='mt-1 text-sm text-(--text-gray)'>
-          اطلاعات مدعو را برای ثبت در سامانه وارد کنید..
+          اطلاعات مدعو را برای ثبت در سامانه وارد کنید.
         </p>
       </div>
     </div>
