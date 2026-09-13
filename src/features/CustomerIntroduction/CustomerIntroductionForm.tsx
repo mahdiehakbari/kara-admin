@@ -339,7 +339,7 @@ export const CustomerIntroductionForm = ({
               <SpinnerDiv />
             ) : (
               <>
-                ثبت مشتری
+                ارسال دعوت نامه
                 <ArrowLeft size={18} className='mr-1' />
               </>
             )}
