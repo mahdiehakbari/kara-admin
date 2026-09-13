@@ -1,6 +1,6 @@
 {
   "exportExcelPdf": "خروجی اکسل/PDF",
-  "customer_list": "لیست مشتریان معرف",
+  "customer_list": "لیست دعوت نامه ها",
   "row": "ردیف",
   "first_name": "نام",
   "last_name": "نام خانوادگی",
@@ -10,12 +10,12 @@
   "status": "وضعیت",
   "actions": "عملیات",
   "delete": "حذف",
-  "introduced_customers": "مشتریان معرفی شده",
-  "customer_status": "وضعیت مشتریان",
+  "introduced_customers": "لیست دعوت نامه ها",
+  "customer_status": "وضعیت دعوت نامه ها",
   "initial_registration": "ثبت اولیه",
   "expired": "منقضی شده",
   "deleted": "حذف شده",
-  "customer": "مشتری",
-  "new_customer_introduction": "معرفی مشتری جدید",
-  "remaining_introduction_capacity": "ظرفیت باقی‌مانده معرفی مشتری"
+  "customer": "مشمول پاداش",
+  "new_customer_introduction": "ارسال دعوت نامه جدید",
+  "remaining_introduction_capacity": "ظرفیت باقی‌مانده ارسال دعوت نامه"
 }

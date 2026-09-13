@@ -253,7 +253,7 @@ useEffect(() => {
     { label: 'ثبت اولیه', value: '0' },
     { label: 'منقضی شده', value: '1' },
     { label: 'حذف شده', value: '2' },
-    { label: 'مشتری', value: '3' },
+    { label: 'مشمول پاداش', value: '3' },
   ];
 
   const handleExportExcel = () => {
@@ -282,7 +282,7 @@ useEffect(() => {
               : customer.status === 2
                 ? 'حذف شده'
                 : customer.status === 3
-                  ? 'مشتری'
+                  ? 'مشمول پاداش'
                   : '-',
       }),
     });

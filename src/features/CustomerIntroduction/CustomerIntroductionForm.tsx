@@ -261,7 +261,7 @@ export const CustomerIntroductionForm = ({
               <MessageSquareText size={15} />
 
               <span className='mr-2'>
-                پیش‌نمایش متن پیامک ارسالی برای مشتری:
+                پیش‌نمایش متن پیامک ارسالی برای مدعو:
               </span>
             </div>
 
