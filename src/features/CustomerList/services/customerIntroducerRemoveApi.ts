@@ -26,11 +26,11 @@ export const customerIntroducerRemoveApi = async (
     if (axios.isAxiosError(error)) {
       const message =
         error.response?.data?.message ||
-        'خطایی در حذف مشتری رخ داده است.';
+        'خطای ناشناخته در حذف دعوت نامه رخ داده است.';
 
       toast.error(message);
     } else {
-      toast.error('خطایی در حذف مشتری رخ داده است.');
+      toast.error('خطای ناشناخته در حذف دعوت نامه رخ داده است.');
     }
 
     throw error;

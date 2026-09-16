@@ -168,10 +168,10 @@ export const CustomerIntroductionForm = ({
       }
 
       if (name === 'addCustomer') {
-        toast.success('اطلاعات مشتری با موفقیت ثبت شد.');
+        toast.success('دعوت نامه با موفقیت ارسال شد.');
         onSuccess?.();
       } else {
-        toast.success('اطلاعات مشتری با موفقیت ثبت شد.', {
+        toast.success('دعوت نامه با موفقیت ارسال شد.', {
           onClose: () => {
             router.push('/panel/customer-list');
           },

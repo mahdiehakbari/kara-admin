@@ -27,11 +27,11 @@ export const customerIntroductionApi = async (
     if (axios.isAxiosError(error)) {
       const message =
         error.response?.data?.message ||
-        'خطایی در ثبت اطلاعات مشتری رخ داده است.';
+        'خطای ناشناخته در ارسال دعوت نامه رخ داده است.';
 
       toast.error(message);
     } else {
-      toast.error('خطایی در ثبت اطلاعات مشتری رخ داده است.');
+      toast.error('خطای ناشناخته در ارسال دعوت نامه رخ داده است.');
     }
 
     throw error;
