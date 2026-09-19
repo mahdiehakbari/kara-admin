@@ -54,11 +54,11 @@ export const customerIntroducerQueryApi = async (
     if (axios.isAxiosError(error)) {
       const message =
         error.response?.data?.message ||
-        خطای ناشناخته در دریافت اطلاعات رخ داده است.;
+        'خطای ناشناخته در دریافت اطلاعات رخ داده است.';
 
       toast.error(message);
     } else {
-      toast.error(خطای ناشناخته در دریافت اطلاعات رخ داده است.);
+      toast.error('خطای ناشناخته در دریافت اطلاعات رخ داده است.');
     }
 
     throw error;
