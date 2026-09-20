@@ -318,7 +318,7 @@ return (
                 href={item.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
                   isVisualContentShowcase && !isActive
-                    ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 text-(--primary) border border-violet-200'
+                    ? 'border'
                     : ''
                 }`}
                 style={{
@@ -327,10 +327,18 @@ return (
                     : isVisualContentShowcase
                       ? undefined
                       : 'var(--sidebar-bg)',
+                  backgroundImage:
+                    isVisualContentShowcase && !isActive
+                      ? 'linear-gradient(to right, var(--visual-content-bg-from), var(--visual-content-bg-to))'
+                      : undefined,
+                  borderColor:
+                    isVisualContentShowcase && !isActive
+                      ? 'var(--visual-content-border)'
+                      : undefined,
                   color: isActive
                     ? 'var(--text-white)'
                     : isVisualContentShowcase
-                      ? undefined
+                      ? 'var(--visual-content-text)'
                       : 'var(--text-black)',
                 }}
               >

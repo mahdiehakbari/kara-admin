@@ -44,6 +44,11 @@ export const getDentistrySideBar = () => [
 ];
 export const getDentistrySideBarItems = () => [
   {
+    label: 'داشبورد',
+    href: '/panel',
+    icon: UserPlus,
+  },
+  {
     label: i18n.t('sidebar:customer_definition'),
     href: '/panel/customer-introduction',
     icon: UserPlus,

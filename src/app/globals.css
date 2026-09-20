@@ -55,10 +55,16 @@
   --col-bg: #fafbff;
   --active-tab-color: #e8eef9;
 
+   --visual-content-bg-from: #f5f3ff;
+  --visual-content-bg-to: #fdf4ff;
+  --visual-content-border: #ddd6fe;
+  --visual-content-text: var(--primary);
+
   /* Border radius scale */
   --radius-card: 14px;
   --radius-btn: 12px;
   --radius-input: 10px;
+  
 }
 
 
@@ -90,6 +96,10 @@
   --second-primary-disabled: #1a3460;
   --text-disabled: #4a6899;
   --second-gray: #1e3d7c;
+   --visual-content-bg-from: #4c1d95;
+  --visual-content-bg-to: #701a75;
+  --visual-content-border: #6b21a8;
+  --visual-content-text: #ffffff;
 }
 
 html {

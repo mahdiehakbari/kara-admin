@@ -151,7 +151,7 @@ export const ListFilter = ({
   return (
     <div className='flex flex-wrap my-2  justify-between  md:full space-y-5'>
       <div
-        className={`flex items-center gap-4 mb-3 ${name == 'installment' ? 'max-w-175' : 'max-w-225'} flex-wrap`}
+        className={`flex  flex-wrap items-center gap-4 mb-3 ${name == 'installment' ? 'max-w-175' : 'max-w-225'}`}
       >
         {showTracking == true && (
           <div className=' w-40 mb-0'>
@@ -715,7 +715,7 @@ export const ListFilter = ({
         )}
 
         {showFromDate == true && (
-          <div className='flex items-center gap-4 mb-0 '>
+          <div className='flex flex-wrap items-center gap-4 mb-0 '>
             {renderDatePicker(
               fromDate ?? null,
               setFromDate!,

@@ -8,6 +8,7 @@ import {
   Button,
   ContentStateWrapper,
   Header,
+  ItemsPerPageSelector,
   ListFilter,
   Paginate,
   ResponsiveModal,
@@ -26,7 +27,6 @@ import { CustomerIntroducerQueryResponse } from '@/features/CustomerList/types';
 import { ISelectOption } from '@/shareComponent/lib/ListFilter/types';
 
 const MAX_CUSTOMER_INTRODUCTIONS = 20;
-const PAGE_SIZE_OPTIONS = [10, 20, 30, 50];
 
 const CustomerList = () => {
   const { t } = useTranslation();
@@ -127,16 +127,15 @@ const CustomerList = () => {
     }
   }, []);
 
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getCustomers();
+  }, [getCustomers]);
 
-useEffect(() => {
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  getCustomers();
-}, [getCustomers]);
-
-useEffect(() => {
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  getRemainingCapacity();
-}, [getRemainingCapacity]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    getRemainingCapacity();
+  }, [getRemainingCapacity]);
 
   const handleFilter = () => {
     setShowRemoveButton(true);
@@ -416,29 +415,11 @@ useEffect(() => {
               <div className='ml-auto flex items-center gap-2'>
                 <span className='text-sm text-gray-500'>نمایش:</span>
 
-                {PAGE_SIZE_OPTIONS.map((count) => {
-                  const isDisabled = (data?.totalCount ?? 0) < count;
-
-                  const isActive = itemsPerPage === count;
-
-                  return (
-                    <button
-                      key={count}
-                      type='button'
-                      disabled={isDisabled}
-                      onClick={() => handlePageSizeChange(count)}
-                      className={`rounded-md px-2.5 py-1.5 text-sm transition-all duration-200 ${
-                        isActive
-                          ? 'bg-(--primary) font-bold text-white'
-                          : isDisabled
-                            ? 'cursor-not-allowed text-gray-300'
-                            : 'text-gray-600 hover:bg-gray-100 hover:text-(--primary)'
-                      }`}
-                    >
-                      {count}
-                    </button>
-                  );
-                })}
+                <ItemsPerPageSelector
+                  itemsPerPage={itemsPerPage}
+                  totalCount={data?.totalCount ?? 0}
+                  onChange={handlePageSizeChange}
+                />
               </div>
 
               <div className='relative left-1/2 w-full -translate-x-1/2 md:absolute md:w-auto'>

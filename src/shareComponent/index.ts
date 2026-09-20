@@ -14,3 +14,4 @@ export { Accordion } from './ui/Accordion/Accordion';
 export { formatTime } from './lib/formatTime/index';
 export { useExportExcel } from './lib/ExportExcel/useExportExcel';
 export { default as Captcha } from './lib/Captcha/Captcha';
+export { default as ItemsPerPageSelector } from './lib/ItemsPerPageSelector/ItemsPerPageSelector';

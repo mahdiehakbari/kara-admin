@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 const Panel = () => {
   const { t: i18n } = useTranslation('home');
@@ -44,13 +44,17 @@ const Panel = () => {
 
           <p className='text-(--text-muted) text-sm md:text-base leading-relaxed text-justify'>
             {i18n('dentalit_description')}{' '}
-            <Link
-              href='/panel/how-to-get-credit'
-              className='text-(--primary) underline px-1'
-            >
-              {i18n('credit_guide')}
-            </Link>{' '}
-            {i18n('credit_guide_suffix')}
+            <Trans
+              ns='home'
+              i18nKey='credit_guide_suffix'
+              components={[
+                <Link
+                  key='credit-link'
+                  href='/panel/how-to-get-credit'
+                  className='text-(--primary)'
+                />,
+              ]}
+            />
           </p>
         </div>
 

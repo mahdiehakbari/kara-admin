@@ -69,18 +69,17 @@ return (
   <aside className='hidden lg:flex w-72 shrink-0 flex-col h-screen overflow-auto sticky top-0 z-20 transition-colors bg-(--surface) shadow-sm'>
     <div className='p-6 flex flex-col gap-6 h-full'>
       {/* Header */}
-      <Link href='/panel'>
-        <h2
-          className='text-xl font-bold transition-colors'
-          style={{ color: 'var(--sidebar-text)' }}
-        >
-          {user?.userType == 'Financial'
-            ? t('dashboard:financialAdminPanel')
-            : user?.userType == 'DentistryAdmin'
-              ? t('sidebar:company_panel')
-              : t('sidebar:customer_referral_panel')}
-        </h2>
-      </Link>
+
+      <h2
+        className='text-xl font-bold transition-colors'
+        style={{ color: 'var(--sidebar-text)' }}
+      >
+        {user?.userType == 'Financial'
+          ? t('dashboard:financialAdminPanel')
+          : user?.userType == 'DentistryAdmin'
+            ? t('sidebar:company_panel')
+            : t('sidebar:customer_referral_panel')}
+      </h2>
 
       {(user?.userType == 'Financial' ||
         user?.userType == 'Admin' ||
@@ -270,7 +269,7 @@ return (
             href={item.href}
             className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
               isVisualContentShowcase && !isActive
-                ? 'bg-gradient-to-r from-violet-50 to-fuchsia-50 text-(--primary) border border-violet-200'
+                ? 'border'
                 : ''
             }`}
             style={{
@@ -279,10 +278,18 @@ return (
                 : isVisualContentShowcase
                   ? undefined
                   : 'var(--sidebar-bg)',
+              backgroundImage:
+                isVisualContentShowcase && !isActive
+                  ? 'linear-gradient(to right, var(--visual-content-bg-from), var(--visual-content-bg-to))'
+                  : undefined,
+              borderColor:
+                isVisualContentShowcase && !isActive
+                  ? 'var(--visual-content-border)'
+                  : undefined,
               color: isActive
                 ? 'var(--text-white)'
                 : isVisualContentShowcase
-                  ? undefined
+                  ? 'var(--visual-content-text)'
                   : 'var(--text-black)',
             }}
           >
