@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
+import { guidData } from './constants';
 
 export const DentalPlaneContent = () => {
   const { t } = useTranslation();
@@ -163,7 +164,49 @@ export const DentalPlaneContent = () => {
       >
         {t('dental_plane:kalanow_credit')}
       </h2>
-      <div className='flex justify-center mb-10'>
+      <div className='relative overflow-hidden rounded-[28px] border border-(--border-color) bg-(--surface) px-6 py-8 md:px-10 mb-12 shadow-[0_18px_40px_rgba(15,23,42,0.05)]'>
+        <div className='pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-(--primary) via-transparent to-(--primary) opacity-60' />
+
+        <h3 className='font-bold text-[16px] md:text-[15px] mb-3 text-(--second-primary)'>
+          متقاضیان گرامی دریافت اعتبار دنتالیت؛
+        </h3>
+
+        <p className='font-normal text-[14px] md:text-[15px] leading-8 text-(--text-muted) mb-8'>
+          در صورتی که از نسخه جدید برنامه کاربردی باجت استفاده می‌کنید، لطفاً
+          جهت ثبت اولیه درخواست اعتبار دنتالیت، مراحل زیر را مطابق با تصاویر
+          راهنما طی نمایید:
+        </p>
+
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
+          {guidData.map((item) => (
+            <div
+              key={item.id}
+              className='flex flex-col items-center text-center'
+            >
+              <p className='text-[14px] md:text-[15px] leading-8 font-bold text-(--primary) border border-dashed border(--primary) rounded-2xl px-2 bg-[#e3eaf6] mb-4'>
+                {item.title}
+              </p>
+
+              <div className='w-full flex justify-center'>
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className='w-full max-w-70 object-contain border border-dashed border-(--primary) rounded-2xl'
+                />
+              </div>
+
+              <p className='text-[14px] md:text-[15px] leading-8 font-normal text-(--text-muted) mt-4'>
+                {item.text}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p className='text-[14px] md:text-[15px] leading-8 font-normal text-yellow-700 text-center mt-4'>
+          پس از انجام مراحل فوق، ادامه فرایند ثبت، بارگذاری مدارک و نهایی‌سازی
+          درخواست را مطابق با ویدئوی آموزشی زیر دنبال فرمایید.
+        </p>
+      </div>
+      <div className='flex flex-col items-center justify-center mb-10'>
         <div className='relative bg-black rounded-[48px] p-4 shadow-[0_20px_40px_rgba(0,0,0,0.32)] w-[330px]'>
           {/* notch */}
           <div className='absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 bg-black rounded-b-3xl z-10'></div>
@@ -193,6 +236,10 @@ export const DentalPlaneContent = () => {
             )}
           </div>
         </div>
+        <p className='text-[14px] md:text-[15px] leading-8 font-bold text-(--text-muted) mt-6 bg-amber-50 border border-dashed border-yellow-600 p-4 rounded-2xl'>
+          در صورت بروز هرگونه پرسش یا نیاز به راهنمایی، تیم پشتیبانی در کنار شما
+          خواهد بود.
+        </p>
       </div>
     </div>
   );
