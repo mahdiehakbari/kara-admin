@@ -1,5 +1,5 @@
 export interface IOtpProps {
   setIsOpenOtpModal: (value: boolean) => void;
-  phone: number;
+  phone: string;
   name?: string;
 }

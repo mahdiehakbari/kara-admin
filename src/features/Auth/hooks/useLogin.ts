@@ -14,11 +14,13 @@ export function useLogin() {
   const [loadingButton, setLoadingButton] = useState(false);
   const [isOpenOtpModal, setIsOpenOtpModal] = useState(false);
 
-  const sendOtp = async (phoneNumber: number) => {
+  const sendOtp = async (phoneNumber: string) => {
     try {
       const resp = await api.post(SEND_OTP, {
-        phoneNumber,
-        otpMode: 2,
+        request: {
+          phoneNumber,
+          otpMode: 2,
+        },
       });
 
       return resp;

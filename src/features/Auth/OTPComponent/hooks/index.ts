@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/store/Auth/authStore';
 
 export const useOtp = (
-  phone: number,
+  phone: string,
   setIsOpenOtpModal: (value: boolean) => void,
 ) => {
   const [otp, setOtp] = useState('');

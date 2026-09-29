@@ -1,3 +1,3 @@
 export interface ILoginFormValues {
-  phoneNumber: number;
+  phoneNumber: string;
 }

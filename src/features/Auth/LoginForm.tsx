@@ -23,7 +23,6 @@ export default function LoginForm() {
   const phoneNumber = watch('phoneNumber');
   return (
     <>
-      {' '}
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className='flex justify-center'>
           <Image

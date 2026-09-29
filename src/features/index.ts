@@ -1,6 +1,8 @@
 export { default as LoginForm } from './Auth/LoginForm';
 export { AuthChecker } from './Auth/AuthChecker/AuthChecker';
 export { default as LayoutShell } from './layout/LayoutShell';
+export { PublicHeader } from './layout/PublicHeader';
+export { LandingClient } from './landing';
 export { customerIntroductionApi } from './CustomerIntroduction/services/customerIntroduction.api';
 export { default as CustomerIntroductionForm } from './CustomerIntroduction/CustomerIntroductionForm';
 export { customerIntroducerQueryApi } from './CustomerList/services/CustomerList.api';

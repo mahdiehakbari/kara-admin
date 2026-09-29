@@ -6,6 +6,7 @@ export const localesNS = [
   'dental_plane',
   'faq',
   'social_media',
+  'landing',
 ] as const;
 export type LocaleNS = (typeof localesNS)[number];
 
