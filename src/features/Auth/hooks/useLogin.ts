@@ -17,10 +17,8 @@ export function useLogin() {
   const sendOtp = async (phoneNumber: string) => {
     try {
       const resp = await api.post(SEND_OTP, {
-        request: {
-          phoneNumber,
-          otpMode: 2,
-        },
+        phoneNumber,
+        otpMode: 2,
       });
 
       return resp;

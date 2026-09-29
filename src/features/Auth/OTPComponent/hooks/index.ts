@@ -10,6 +10,7 @@ import { useAuthStore } from '@/store/Auth/authStore';
 export const useOtp = (
   phone: string,
   setIsOpenOtpModal: (value: boolean) => void,
+  name?: string,
 ) => {
   const [otp, setOtp] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,7 +44,6 @@ export const useOtp = (
         otp,
       });
 
-
       if (response?.data) {
         const { token, user, expiresAt } = response.data;
 
@@ -53,20 +53,23 @@ export const useOtp = (
         localStorage.setItem('user', JSON.stringify(user));
 
         setIsOpenOtpModal(false);
+        if (name === 'hero') {
+          Cookies.set('isLoggedIn', 'true');
+          router.push('/panel/customer-introduction');
+          return;
+        }
 
         if (user.isCompleteProfile === false) {
           Cookies.set('isLoggedIn', 'false');
           router.push('/profile');
         } else {
           Cookies.set('isLoggedIn', 'true');
-          router.push('/panel');
+          // router.push('/panel');
         }
       }
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
-        setError(
-          err.response?.data?.message || 'خطایی رخ داده است.'
-        );
+        setError(err.response?.data?.message || 'خطایی رخ داده است.');
       } else if (err instanceof Error) {
         setError(err.message);
       } else {

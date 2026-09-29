@@ -7,7 +7,7 @@ export const ContentStateWrapper = ({
   children,
 }: IContentStateWrapperProps) => {
   return (
-    <div className='relative'>
+    <div className='relative mt-25'>
       {loading && (
         <div
           className={`absolute inset-0 z-50 flex justify-center items-center h-screen md:min-h-full bg-(--surface)`}

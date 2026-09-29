@@ -1,41 +1,13 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { Clock, CreditCard, Smartphone, Wallet, Zap } from 'lucide-react';
+import { getSteps } from '../constants';
+
 
 export function StepsProcess() {
   const { t } = useTranslation(['landing', 'home']);
 
-  const steps = [
-    {
-      number: '۱',
-      icon: Smartphone,
-      meta: t('landing:step_one_meta'),
-      metaIcon: Clock,
-      title: t('home:step_one'),
-      description: t('home:step_one_description'),
-      accent: 'bg-(--primary)',
-    },
-    {
-      number: '۲',
-      icon: CreditCard,
-      meta: t('landing:step_two_meta'),
-      metaIcon: Zap,
-      title: t('home:step_two'),
-      description: t('home:step_two_description'),
-      accent: 'bg-(--primary)',
-    },
-    {
-      number: '۳',
-      icon: Wallet,
-      meta: t('landing:step_three_meta'),
-      metaIcon: Zap,
-      title: t('home:step_three'),
-      description: t('home:step_three_description'),
-      accent: 'bg-(--secondary-green)',
-      highlight: true,
-    },
-  ];
+  const steps = getSteps(t);
 
   return (
     <section

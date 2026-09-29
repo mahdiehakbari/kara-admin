@@ -22,7 +22,7 @@ const SocialMediaContent = () => {
   const [activeTab, setActiveTab] = useState<TabKey>('post');
 
   return (
-    <div className='max-w-7xl min-w-0 my-6 mx-auto px-4 sm:px-6 lg:pb-8 pb-8 md:pb-12'>
+    <div className='mt-25 max-w-7xl min-w-0 my-6 mx-auto px-4 sm:px-6 lg:pb-8 pb-8 md:pb-12'>
       <div className='md:flex justify-between bg-(--primary) p-6 rounded-2xl shadow-xl mb-20'>
         <div className='w-full md:w-75 shrink-0 order-1 md:order-2 flex justify-center'>
           <Image

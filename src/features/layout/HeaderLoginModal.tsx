@@ -7,41 +7,47 @@ import { useLogin } from '@/features/Auth/hooks/useLogin';
 import { toEnglishDigits } from '@/features/Auth/utils/toEnglishDigits';
 import { OtpModal } from '@/features/Auth/OTPComponent/OtpModal';
 import { Button, ResponsiveModal, SpinnerDiv } from '@/shareComponent';
+import { HeaderLoginModalProps } from './types';
 
-interface HeaderLoginModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
 
-const PHONE_PATTERN = /^[0-9]{11,}$/;
 
-/**
- * Two independent ResponsiveModal instances (phone step, then OTP step),
- * not one nested inside the other. Submitting the phone step closes this
- * modal and opens the OTP modal; going back from OTP re-opens this one.
- *
- * Uses a plain controlled input instead of react-hook-form's ref-based
- * register(): ResponsiveModal renders its `children` twice internally (one
- * DOM tree for the desktop layout, one for the mobile bottom sheet), which
- * would leave an uncontrolled/ref-registered field tracking only one of the
- * two duplicated inputs. A controlled value+onChange stays in sync across
- * both copies since they all re-render from the same component state.
- */
-export function HeaderLoginModal({ isOpen, onClose }: HeaderLoginModalProps) {
+export function HeaderLoginModal({
+  isOpen,
+  onClose,
+  name,
+}: HeaderLoginModalProps) {
   const { t } = useTranslation(['landing', 'login']);
   const { onSubmit, loadingButton, isOpenOtpModal, setIsOpenOtpModal } =
     useLogin();
   const [phoneValue, setPhoneValue] = useState('');
   const [touched, setTouched] = useState(false);
 
-  const isValid = PHONE_PATTERN.test(phoneValue);
+  const handleOtpModalChange = (
+    value: boolean | ((prev: boolean) => boolean),
+  ) => {
+    const nextValue =
+      typeof value === 'function' ? value(isOpenOtpModal) : value;
+
+    setIsOpenOtpModal(nextValue);
+
+    if (!nextValue) {
+      onClose();
+    }
+  };
+
+  const isValid = /^09\d{9}$/.test(phoneValue);
   const showError = touched && !isValid;
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     setTouched(true);
+
     if (!isValid) return;
-    onSubmit({ phoneNumber: phoneValue });
+
+    onSubmit({
+      phoneNumber: phoneValue,
+    });
   };
 
   return (
@@ -51,7 +57,7 @@ export function HeaderLoginModal({ isOpen, onClose }: HeaderLoginModalProps) {
         onClose={onClose}
         title={t('landing:login_modal_title')}
       >
-        <form onSubmit={handleSubmit} className='p-6 sm:p-8 sm:w-[380px]'>
+        <form onSubmit={handleSubmit} className='p-6 sm:p-8 sm:w-95'>
           <div className='flex justify-center'>
             <Image
               src='/assets/icons/logo.png'
@@ -99,8 +105,8 @@ export function HeaderLoginModal({ isOpen, onClose }: HeaderLoginModalProps) {
         onClose={() => setIsOpenOtpModal(false)}
       >
         <OtpModal
-          name='auth'
-          setIsOpenOtpModal={setIsOpenOtpModal}
+          name={name}
+          setIsOpenOtpModal={handleOtpModalChange}
           phone={phoneValue}
         />
       </ResponsiveModal>

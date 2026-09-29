@@ -1,41 +1,12 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { Clock, RefreshCw, Users, Wallet } from 'lucide-react';
+import { getRules } from '../constants';
 
 export function RulesSection() {
   const { t } = useTranslation(['landing', 'home']);
 
-  const rules = [
-    {
-      icon: Users,
-      badge: t('rule_quota_badge'),
-      title: t('home:list_capacity'),
-      description: t('home:list_capacity_description'),
-      tone: 'bg-(--light-primary) text-(--primary)',
-    },
-    {
-      icon: Clock,
-      badge: t('rule_deadline_badge'),
-      title: t('home:thirty_day_golden_period'),
-      description: t('home:thirty_day_golden_period_description'),
-      tone: 'bg-amber-50 text-amber-700',
-    },
-    {
-      icon: RefreshCw,
-      badge: t('rule_cycle_badge'),
-      title: t('home:how_to_refer_more'),
-      description: t('home:how_to_refer_more_description'),
-      tone: 'bg-(--light-primary) text-(--secondary-green)',
-    },
-    {
-      icon: Wallet,
-      badge: t('rule_settlement_badge'),
-      title: t('home:income_withdrawal'),
-      description: t('home:income_withdrawal_description'),
-      tone: 'bg-(--light-primary) text-(--primary)',
-    },
-  ];
+ const rules = getRules(t);
 
   return (
     <section

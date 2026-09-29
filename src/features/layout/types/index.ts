@@ -16,3 +16,9 @@ export interface IUser {
   merchantId: string | null;
   userTypes: string | null;
 }
+
+export interface HeaderLoginModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  name?: string;
+}

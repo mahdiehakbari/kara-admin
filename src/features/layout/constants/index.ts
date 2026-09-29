@@ -7,7 +7,6 @@ import {
   Stethoscope,
   Users,
   Wallet,
-  ClipboardPlus,
   ReceiptText,
   BadgeDollarSign,
   Handshake,
@@ -15,9 +14,14 @@ import {
   ArrowLeftRight,
   UserPlus,
   UsersRound,
-  GitPullRequestArrow,
   Workflow,
   Share2,
+  House,
+  Award,
+  ListChecks,
+  Calculator,
+  Gavel,
+  Headphones,
 } from 'lucide-react';
 
 export const getDentistrySideBar = () => [
@@ -43,11 +47,11 @@ export const getDentistrySideBar = () => [
   },
 ];
 export const getDentistrySideBarItems = () => [
-  {
-    label: 'داشبورد',
-    href: '/panel',
-    icon: LayoutDashboard,
-  },
+  // {
+  //   label: 'داشبورد',
+  //   href: '/panel',
+  //   icon: LayoutDashboard,
+  // },
   {
     label: i18n.t('sidebar:customer_definition'),
     href: '/panel/customer-introduction',
@@ -119,10 +123,10 @@ export const getSideBarItems = () => [
     path: 'panel/AccountingReport',
     icon: BookOpenText,
   },
-  // {
-  //   label: i18n.t('dashboard:customer_management'),
-  //   path: 'panel/customerManagement',
-  //   icon: '/assets/icons/people.svg',
-  // },
 ];
 
+export const NAV_ITEMS = [
+  { key: 'nav_home', href: '/', icon: House },
+  { key: 'nav_rules', href: '/rules', icon: Gavel },
+  { key: 'nav_contact', href: '/contact-us', icon: Headphones },
+] as const;

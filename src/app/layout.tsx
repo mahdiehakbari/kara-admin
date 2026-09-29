@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import I18nProvider from '@/providers/I18nProvider';
 import { cookies } from 'next/headers';
 import { ThemeProvider } from '@/providers/ThemeProvider';
-import { AuthChecker, LayoutShell } from '@/features';
+import { AuthChecker, LayoutShell, PublicHeader } from '@/features';
 import Script from 'next/script';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -96,6 +96,7 @@ export default function RootLayout({
         <I18nProvider>
           <ThemeProvider defaultTheme='light'>
             <AuthChecker />
+            <PublicHeader />
             <LayoutShell>{children}</LayoutShell>
 
             <ToastContainer

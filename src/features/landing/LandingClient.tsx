@@ -4,7 +4,6 @@ import { BenefitPillars } from './components/BenefitPillars/BenefitPillars';
 import { StepsProcess } from './components/StepsProcess/StepsProcess';
 import { EarningCalculator } from './components/EarningCalculator/EarningCalculator';
 import { RulesSection } from './components/RulesSection/RulesSection';
-import { QuickInvite } from './components/QuickInvite/QuickInvite';
 import { SupportBar } from './components/SupportBar/SupportBar';
 import { SiteFooter } from './components/SiteFooter/SiteFooter';
 
@@ -18,7 +17,7 @@ export function LandingClient() {
         <StepsProcess />
         <EarningCalculator />
         <RulesSection />
-        <QuickInvite />
+        {/* <QuickInvite /> */}
         <SupportBar />
       </main>
       <SiteFooter />

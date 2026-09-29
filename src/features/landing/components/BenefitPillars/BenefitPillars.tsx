@@ -55,9 +55,19 @@ export function BenefitPillars() {
           <h3 className='text-lg font-bold text-(--text-black) mb-2'>
             {t('landing:pillar_reward_title')}
           </h3>
-          <p className='text-sm text-(--second-text-color) leading-relaxed mb-6 flex-grow'>
-            {t('home:reward_description')} {t('home:amazing_example_description')}
+          <p className='text-sm text-(--second-text-color) leading-relaxed flex-grow  mb-4'>
+            {t('home:reward_description')}{' '}
+            {t('home:amazing_example_description')}
           </p>
+          <div className='p-4 rounded-xl bg-white/70 border border-amber-200/50 space-y-1.5  mb-6'>
+            <strong className='text-amber-950 font-bold text-sm block'>
+              {t('home:important_note')}
+            </strong>
+
+            <p className='text-amber-900/80 text-sm leading-relaxed'>
+              {t('home:important_note_description')}
+            </p>
+          </div>
           <div className='pt-4 border-t border-amber-100 flex items-center gap-2 text-amber-700 text-xs font-bold'>
             <Zap className='w-4 h-4' />
             <span>{t('landing:pillar_reward_footnote')}</span>

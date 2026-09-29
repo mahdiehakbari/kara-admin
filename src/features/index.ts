@@ -21,3 +21,4 @@ export { default as Direct } from './socialMediaContent/Direct/Direct';
 export { default as Guid } from './socialMediaContent/Guid/Guid';
 export { default as FollowUp } from './socialMediaContent/FollowUp/FollowUp';
 export { getCustomerIntroductionCaptcha } from './CustomerIntroduction/services/getCustomerIntroductionCaptcha';
+export { HeaderLoginModal } from './layout/HeaderLoginModal';

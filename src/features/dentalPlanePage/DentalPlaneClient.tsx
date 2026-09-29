@@ -22,7 +22,7 @@ export default function DentalPlaneClient() {
   }, [scroll]);
 
   return (
-    <div className='relative max-w-6xl mx-4 md:mx-auto md:px-0 py-8 md:py-10 text-justify'>
+    <div className='mt-25 relative max-w-6xl mx-4 md:mx-auto md:px-0 py-8 md:py-10 text-justify'>
       <div className='' />
       <DentalBanner />
       <DentalPlaneContent />

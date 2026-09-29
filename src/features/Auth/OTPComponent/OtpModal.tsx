@@ -14,7 +14,7 @@ import { useLogin } from '../hooks/useLogin';
 
 export const OtpModal: React.FC<IOtpProps> = ({
   setIsOpenOtpModal,
-phone,
+  phone,
   name,
 }) => {
   const { t } = useTranslation();
@@ -25,8 +25,11 @@ phone,
   const [apiError, setApiError] = useState('');
   const { sendOtp } = useLogin();
 
-const { otp, setOtp, isSubmitting, error, handleSubmit } =
-  useOtp(phone, setIsOpenOtpModal);
+  const { otp, setOtp, isSubmitting, error, handleSubmit } = useOtp(
+    phone,
+    setIsOpenOtpModal,
+    name,
+  );
   const handleBack = () => {
     setIsOpenOtpModal(false);
   };
@@ -48,7 +51,7 @@ const { otp, setOtp, isSubmitting, error, handleSubmit } =
     setCanResend(false);
     setApiError('');
     try {
-    await sendOtp(phone);
+      await sendOtp(phone);
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         setApiError(err.response?.data?.message);

@@ -27,7 +27,7 @@ export function SupportBar() {
         </div>
         <div className='flex flex-wrap items-center gap-3'>
           <a
-            href='tel:02188884321'
+            href='tel:90000644'
             className='px-5 py-2.5 rounded-xl bg-(--bg-gray-light) hover:bg-(--secondary) text-(--second-text-color) border border-(--border-color) text-xs sm:text-sm font-bold transition-colors flex items-center gap-2'
           >
             <PhoneCall className='w-4 h-4 text-(--primary)' />
