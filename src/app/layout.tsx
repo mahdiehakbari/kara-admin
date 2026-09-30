@@ -15,12 +15,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
   const userType = cookieStore.get('userType')?.value;
 
-  const siteTitle =
-    userType === 'Admin'
-      ? 'پنل مدیریت دنتالیت'
-      : userType === 'Financial'
-        ? 'پنل مدیریت مالی'
-        : 'باشگاه معرفین دنتالیت';
+  const siteTitle = 'باشگاه معرفین دنتالیت';
   return {
     metadataBase: new URL('https://example.com'),
     title: {
