@@ -78,9 +78,7 @@ export const OtpModal: React.FC<IOtpProps> = ({
           />
         </button>
 
-        <h2 className='text-[18px] font-bold '>
-          {t('login:verification_code')}
-        </h2>
+        <h2 className='text-[18px] font-bold '>تایید کد یکبارمصرف</h2>
       </div>
 
       <p className='text-[12px] font-semibold text-(--gray-text-second) mb-6'>
@@ -141,7 +139,7 @@ export const OtpModal: React.FC<IOtpProps> = ({
         {isSubmitting ? (
           <SpinnerDiv size='sm' className='text-white' />
         ) : (
-          t('login:login')
+          'تایید و ورود به پنل'
         )}
       </Button>
       <div className='flex justify-center items-center mt-4 gap-2 text-sm'>

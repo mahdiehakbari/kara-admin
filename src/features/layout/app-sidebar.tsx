@@ -71,7 +71,7 @@ export function AppSidebar() {
     normalizedUserTypes.includes('CustomerIntroducer');
 
   return (
-    <aside className='hidden  mt-25 pb-40 lg:flex w-72 h-fit shrink-0 rounded-tl-2xl rounded-bl-2xl flex-col  overflow-auto sticky top-0 z-20 transition-colors bg-(--surface) shadow-sm'>
+    <aside className='hidden mb-6 mt-25 pb-40 lg:flex w-72 h-fit shrink-0 rounded-tl-2xl rounded-bl-2xl flex-col  overflow-auto sticky top-0 z-20 transition-colors bg-(--surface) shadow-sm'>
       <div className='p-6 flex flex-col gap-6'>
         {/* Header */}
 

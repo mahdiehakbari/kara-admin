@@ -9,6 +9,7 @@ import {
   Stethoscope,
   Headphones,
 } from 'lucide-react';
+import Link from 'next/link';
 
 export function SiteFooter() {
   const { t } = useTranslation('landing');
@@ -41,24 +42,36 @@ export function SiteFooter() {
               {t('footer_quick_links')}
             </span>
             <div className='flex flex-col space-y-2 text-xs text-(--text-muted)'>
-              <a
-                href='#about'
+              <Link
+                href='https://dentalit.ir/'
+                className='hover:text-(--primary) transition-colors'
+              >
+                وبسایت دنتالیت
+              </Link>
+              <Link
+                href='https://dentist.dentalit.ir/'
+                className='hover:text-(--primary) transition-colors'
+              >
+                پنل پزشکان دنتالیت
+              </Link>
+              <Link
+                href='/#about'
                 className='hover:text-(--primary) transition-colors'
               >
                 {t('footer_link_about')}
-              </a>
-              <a
-                href='#earning-calc'
+              </Link>
+              <Link
+                href='/#earning-calc'
                 className='hover:text-(--primary) transition-colors'
               >
                 {t('footer_link_calculator')}
-              </a>
-              <a
-                href='#rules'
+              </Link>
+              <Link
+                href='/#rules'
                 className='hover:text-(--primary) transition-colors'
               >
                 {t('footer_link_rules')}
-              </a>
+              </Link>
             </div>
           </div>
 

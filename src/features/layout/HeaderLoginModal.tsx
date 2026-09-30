@@ -55,7 +55,7 @@ export function HeaderLoginModal({
       <ResponsiveModal
         isOpen={isOpen && !isOpenOtpModal}
         onClose={onClose}
-        title={t('login:login_panel')}
+        title='ورود / عضویت در باشگاه معرفین دنتالیت'
       >
         <form onSubmit={handleSubmit} className='p-6 sm:p-8 sm:w-95'>
           <div className='flex justify-center'>
@@ -72,7 +72,7 @@ export function HeaderLoginModal({
             باشگاه معرفین دنتالیت
           </h2>
           <p className='text-center mb-8 font-medium text-[14px] transition-colors'>
-            شماره موبایل خود را جهت عضویت رایگان وارد کنید
+            جهت ورود یا عضویت سریع، شماره تلفن همراه خود را وارد کنید:
           </p>
 
           <div className='mb-4'>
@@ -95,7 +95,7 @@ export function HeaderLoginModal({
           </div>
 
           <Button type='submit' disabled={!isValid} className='w-full'>
-            {loadingButton ? <SpinnerDiv /> : t('login:login_panel')}
+            {loadingButton ? <SpinnerDiv /> : 'دریافت کد تایید ورود'}
           </Button>
         </form>
       </ResponsiveModal>

@@ -289,14 +289,13 @@ const CustomerList = () => {
 
   return (
     <ContentStateWrapper loading={loading} loadingText={t('home:page_loading')}>
-      <Header
-        name='customerlist'
-        title={t('customerList:customer_list')}
-        subTitle=''
-        onExport={handleExportExcel}
-      />
-
-      <div className='p-4 md:p-6'>
+      <div className='p-4 md:px-4 md:pb-4 md:pt-0'>
+        <Header
+          name='customerlist'
+          title={t('customerList:customer_list')}
+          subTitle=''
+          onExport={handleExportExcel}
+        />
         <div className='mb-6 border-b border-(--border-color)'>
           <div className='flex items-center gap-2'>
             <button

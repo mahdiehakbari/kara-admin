@@ -208,7 +208,7 @@ export const CustomerIntroductionForm = ({
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className='max-w-3xl w-full mt-20 '
+      className={`max-w-3xl w-full ${name != 'addCustomer' && 'mt-20'}`}
       dir='rtl'
     >
       <div

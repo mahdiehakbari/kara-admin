@@ -9,7 +9,7 @@ const Header = ({ name, title, subTitle, onExport }: HeaderProps) => {
   const { t } = useTranslation();
   return (
     <header
-      className={`w-full  py-4 mt-12 md:mt-0 sticky top-0 z-10 transition-colors px-0 md:px-6 shadow-sm bg-(--surface)`}
+      className={`w-full rounded-2xl mb-6  py-4  md:mt-0 sticky top-0 z-10 transition-colors px-0 md:px-6 shadow-sm bg-(--surface)`}
     >
       <div className='flex flex-col md:flex-row md:items-center justify-between gap-6 px-4 md:px-0'>
         <div className='flex flex-col gap-1'>
@@ -21,14 +21,14 @@ const Header = ({ name, title, subTitle, onExport }: HeaderProps) => {
         </div>
         <div className='flex items-center gap-3 flex-wrap'>
           <Button
-              onClick={onExport}
-              className='w-fit flex items-center justify-center gap-2 h-10 px-4  text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 transition-all'
-            >
-              <Download className='w-5 h-5' />
-              <span className='hidden sm:inline'>
-                {t('customerList:exportExcelPdf')}
-              </span>
-            </Button>
+            onClick={onExport}
+            className='w-fit flex items-center justify-center gap-2 h-10 px-4  text-white rounded-lg text-sm font-bold shadow-lg shadow-primary/20 transition-all'
+          >
+            <Download className='w-5 h-5' />
+            <span className='hidden sm:inline'>
+              {t('customerList:exportExcelPdf')}
+            </span>
+          </Button>
         </div>
       </div>
     </header>

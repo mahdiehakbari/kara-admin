@@ -30,7 +30,7 @@ export default function ResponsiveModal({
           />
 
           <motion.div
-            className={`hidden sm:flex fixed inset-0 z-50 justify-center items-center p-4`}
+            className={`hidden sm:flex fixed inset-0 z-50 justify-center items-center p-4 mt-20`}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -54,7 +54,7 @@ export default function ResponsiveModal({
                   />
                 </div>
               )}
-              <div className={` overflow-y-auto max-h-[50vh] md:max-h-[87vh]`}>
+              <div className={` overflow-y-auto max-h-[50vh] md:max-h-[70vh]`}>
                 {children}
               </div>
             </div>

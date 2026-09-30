@@ -10,7 +10,7 @@ import { FiPhone } from 'react-icons/fi';
 const ContactUs = () => {
   const { t } = useTranslation();
   return (
-    <div className=' flex flex-col items-center max-w-6xl mx-4 md:mx-auto'>
+    <div className=' flex flex-col items-center max-w-6xl mx-4 md:mx-auto mt-30'>
       <div className="bg-[url('/assets/icons/mapimg.png')] bg-cover bg-center h-96  w-full rounded-2xl mb-6"></div>
       <div className=' w-full bg-(--surface) border border-(--border-color) rounded-2xl p-6 transition-colors my-6'>
         <div className='flex items-center w-full text-right gap-3 mb-6'>
