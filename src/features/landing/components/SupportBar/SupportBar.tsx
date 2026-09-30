@@ -33,13 +33,13 @@ export function SupportBar() {
             <PhoneCall className='w-4 h-4 text-(--primary)' />
             <span>{t('support_call_cta')}</span>
           </a>
-          <a
+          {/* <a
             href='#'
             className='px-5 py-2.5 rounded-xl bg-(--light-primary) hover:bg-(--light-primary)/70 text-(--primary) border border-(--primary-border)/30 text-xs sm:text-sm font-bold transition-colors flex items-center gap-2'
           >
             <MessageCircle className='w-4 h-4' />
             <span>{t('support_chat_cta')}</span>
-          </a>
+          </a> */}
         </div>
       </div>
     </section>
