@@ -9,6 +9,7 @@ import { cookies } from 'next/headers';
 import { ThemeProvider } from '@/providers/ThemeProvider';
 import { AuthChecker, LayoutShell, PublicHeader } from '@/features';
 import Script from 'next/script';
+import { SiteFooter } from '@/features/landing';
 
 export async function generateMetadata(): Promise<Metadata> {
   const cookieStore = await cookies();
@@ -98,7 +99,7 @@ export default function RootLayout({
             <AuthChecker />
             <PublicHeader />
             <LayoutShell>{children}</LayoutShell>
-
+            <SiteFooter />
             <ToastContainer
               position='top-center'
               autoClose={3000}

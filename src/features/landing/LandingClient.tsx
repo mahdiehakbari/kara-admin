@@ -5,7 +5,7 @@ import { StepsProcess } from './components/StepsProcess/StepsProcess';
 import { EarningCalculator } from './components/EarningCalculator/EarningCalculator';
 import { RulesSection } from './components/RulesSection/RulesSection';
 import { SupportBar } from './components/SupportBar/SupportBar';
-import { SiteFooter } from './components/SiteFooter/SiteFooter';
+
 
 export function LandingClient() {
   return (
@@ -20,7 +20,6 @@ export function LandingClient() {
         {/* <QuickInvite /> */}
         <SupportBar />
       </main>
-      <SiteFooter />
     </>
   );
 }

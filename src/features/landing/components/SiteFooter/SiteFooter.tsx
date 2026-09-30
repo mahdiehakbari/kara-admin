@@ -30,6 +30,9 @@ export function SiteFooter() {
             <p className='text-xs text-(--text-muted) leading-relaxed mb-4'>
               {t('footer_description')}
             </p>
+            <p className='text-xs text-(--text-muted) leading-relaxed mb-4'>
+              زیرساخت پرداخت و اعتبارات سلامت‌محور بانکی کشور.
+            </p>
           </div>
 
           {/* Quick links */}
@@ -38,7 +41,10 @@ export function SiteFooter() {
               {t('footer_quick_links')}
             </span>
             <div className='flex flex-col space-y-2 text-xs text-(--text-muted)'>
-              <a href='#about' className='hover:text-(--primary) transition-colors'>
+              <a
+                href='#about'
+                className='hover:text-(--primary) transition-colors'
+              >
                 {t('footer_link_about')}
               </a>
               <a
@@ -47,7 +53,10 @@ export function SiteFooter() {
               >
                 {t('footer_link_calculator')}
               </a>
-              <a href='#rules' className='hover:text-(--primary) transition-colors'>
+              <a
+                href='#rules'
+                className='hover:text-(--primary) transition-colors'
+              >
                 {t('footer_link_rules')}
               </a>
             </div>
@@ -63,16 +72,19 @@ export function SiteFooter() {
                 <Headphones className='w-3.5 h-3.5 text-(--primary)' />
                 <span>{t('footer_contact_support')}</span>
               </div>
-              <div className='flex items-center gap-2'>
+              <a
+                href='tel:90000644'
+                className='flex items-center gap-2 hover:text-(--primary)'
+              >
                 <ShieldCheck className='w-3.5 h-3.5 text-(--primary)' />
                 <span>{t('support_phone')}</span>
-              </div>
+              </a>
               <div className='flex items-center gap-2'>
                 <Mail className='w-3.5 h-3.5 text-(--primary)' />
                 <span>{t('footer_contact_email')}</span>
               </div>
               <div className='flex items-center gap-2'>
-                <MapPin className='w-3.5 h-3.5 text-(--primary)' />
+                <MapPin className='w-8 h-5 text-(--primary)' />
                 <span>{t('footer_contact_address')}</span>
               </div>
             </div>

@@ -3,7 +3,12 @@
 import Cookies from 'js-cookie';
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-
+const PUBLIC_ROUTES = [
+  '/how-to-get-credit',
+  '/rules',
+  '/contact-us',
+  '/social-media-content',
+];
 function logout(router: ReturnType<typeof useRouter>) {
   Cookies.remove('token');
   Cookies.remove('tokenExpiresAt');
@@ -17,8 +22,7 @@ export function useAuthTimeout() {
   const pathname = usePathname();
 
   useEffect(() => {
- 
-    if (pathname === '/') {
+    if (PUBLIC_ROUTES.includes(pathname)) {
       return;
     }
 

@@ -1,28 +1,13 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { Landmark, Network, ShieldCheck, Stethoscope } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
+import { getPartners } from '../constants';
 
 export function TrustBar() {
   const { t } = useTranslation('landing');
 
-  const partners = [
-    {
-      icon: Landmark,
-      name: t('trust_bank_name'),
-      desc: t('trust_bank_desc'),
-    },
-    {
-      icon: Stethoscope,
-      name: t('trust_society_name'),
-      desc: t('trust_society_desc'),
-    },
-    {
-      icon: Network,
-      name: t('trust_network_name'),
-      desc: t('trust_network_desc'),
-    },
-  ];
+  const partners = getPartners(t);
 
   return (
     <section className='w-full bg-(--surface) border-y border-(--border-color) py-6'>
@@ -53,7 +38,7 @@ export function TrustBar() {
                   <span className='text-xs font-bold text-(--text-black)'>
                     {partner.name}
                   </span>
-                  <span className='text-[11px] text-(--text-muted)'>
+                  <span className='text-[11px] text-(--text-muted) max-w-sm'>
                     {partner.desc}
                   </span>
                 </div>

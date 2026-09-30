@@ -42,7 +42,8 @@ export function Hero() {
                 <span>{t('landing:partnership_badge')}</span>
               </div>
               <div className='inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-(--light-primary) border border-(--primary-border)/30 text-(--primary) text-xs font-semibold'>
-                <span className='w-2 h-2 rounded-full bg-(--secondary-green)' />
+                <span className='w-2 h-2 rounded-full bg-(--secondary-green) animate-pulse' />
+                <ShieldCheck className='w-3.5 h-3.5' />
                 <span>{t('landing:hero_no_guarantor_badge')}</span>
               </div>
             </div>
@@ -138,9 +139,6 @@ export function Hero() {
                         {t('landing:hero_card_reward_badge')}
                       </span>
                     </div>
-                    <span className='text-[11px] bg-slate-900 text-white font-bold px-2 py-0.5 rounded whitespace-nowrap'>
-                      {t('landing:hero_card_cash_deposit')}
-                    </span>
                   </div>
                 </div>
               </div>

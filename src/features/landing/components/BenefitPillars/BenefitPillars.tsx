@@ -56,8 +56,7 @@ export function BenefitPillars() {
             {t('landing:pillar_reward_title')}
           </h3>
           <p className='text-sm text-(--second-text-color) leading-relaxed flex-grow  mb-4'>
-            {t('home:reward_description')}{' '}
-            {t('home:amazing_example_description')}
+            {t('home:reward_description')}
           </p>
           <div className='p-4 rounded-xl bg-white/70 border border-amber-200/50 space-y-1.5  mb-6'>
             <strong className='text-amber-950 font-bold text-sm block'>

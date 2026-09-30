@@ -47,11 +47,6 @@ export const getDentistrySideBar = () => [
   },
 ];
 export const getDentistrySideBarItems = () => [
-  // {
-  //   label: 'داشبورد',
-  //   href: '/panel',
-  //   icon: LayoutDashboard,
-  // },
   {
     label: i18n.t('sidebar:customer_definition'),
     href: '/panel/customer-introduction',
@@ -61,16 +56,6 @@ export const getDentistrySideBarItems = () => [
     label: i18n.t('sidebar:customer_status_list'),
     href: '/panel/customer-list',
     icon: UsersRound,
-  },
-  {
-    label: i18n.t('sidebar:process_receiving'),
-    href: '/panel/how-to-get-credit',
-    icon: Workflow,
-  },
-  {
-    label: i18n.t('sidebar:social_media'),
-    href: '/panel/social-media-content',
-    icon: Share2,
   },
 ];
 
@@ -126,7 +111,40 @@ export const getSideBarItems = () => [
 ];
 
 export const NAV_ITEMS = [
-  { key: 'nav_home', href: '/', icon: House },
-  { key: 'nav_rules', href: '/rules', icon: Gavel },
-  { key: 'nav_contact', href: '/contact-us', icon: Headphones },
+  {
+    key: 'nav_home',
+    href: '/',
+    icon: House,
+    highlighted: false,
+    translationNamespace: 'landing',
+  },
+
+  {
+    key: 'process_receiving',
+    href: '/how-to-get-credit',
+    icon: Workflow,
+    highlighted: false,
+    translationNamespace: 'sidebar',
+  },
+  {
+    key: 'social_media',
+    href: '/social-media-content',
+    icon: Share2,
+    highlighted: true,
+    translationNamespace: 'sidebar',
+  },
+  {
+    key: 'nav_rules',
+    href: '/rules',
+    icon: Gavel,
+    highlighted: false,
+    translationNamespace: 'landing',
+  },
+  {
+    key: 'nav_contact',
+    href: '/contact-us',
+    icon: Headphones,
+    highlighted: false,
+    translationNamespace: 'landing',
+  },
 ] as const;

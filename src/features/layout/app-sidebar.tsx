@@ -266,39 +266,19 @@ export function AppSidebar() {
           const Icon = item.icon;
           const isIconPath = typeof Icon === 'string';
 
-          const isVisualContentShowcase = item.label === 'ویترین محتوای بصری';
-
           return (
             <Link
               key={item.href}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                isVisualContentShowcase && !isActive ? 'border' : ''
-              }`}
+              className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200`}
               style={{
                 backgroundColor: isActive
                   ? 'var(--primary)'
-                  : isVisualContentShowcase
-                    ? undefined
-                    : 'var(--sidebar-bg)',
-                backgroundImage:
-                  isVisualContentShowcase && !isActive
-                    ? 'linear-gradient(to right, var(--visual-content-bg-from), var(--visual-content-bg-to))'
-                    : undefined,
-                borderColor:
-                  isVisualContentShowcase && !isActive
-                    ? 'var(--visual-content-border)'
-                    : undefined,
-                color: isActive
-                  ? 'var(--text-white)'
-                  : isVisualContentShowcase
-                    ? 'var(--visual-content-text)'
-                    : 'var(--text-black)',
+                  : 'var(--sidebar-bg)',
+                color: isActive ? 'var(--text-white)' : 'var(--text-black)',
               }}
             >
-              {isVisualContentShowcase ? (
-                <span className=' text-lg animate-pulse'>✨</span>
-              ) : isIconPath ? (
+              {isIconPath ? (
                 <img src={Icon} alt='' className='w-5 h-5' aria-hidden='true' />
               ) : (
                 <Icon className='w-5 h-5' strokeWidth={isActive ? 2.5 : 2} />

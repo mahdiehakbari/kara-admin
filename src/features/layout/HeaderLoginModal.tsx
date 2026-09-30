@@ -55,7 +55,7 @@ export function HeaderLoginModal({
       <ResponsiveModal
         isOpen={isOpen && !isOpenOtpModal}
         onClose={onClose}
-        title={t('landing:login_modal_title')}
+        title={t('login:login_panel')}
       >
         <form onSubmit={handleSubmit} className='p-6 sm:p-8 sm:w-95'>
           <div className='flex justify-center'>
