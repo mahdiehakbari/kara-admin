@@ -133,13 +133,13 @@ export const NAV_ITEMS = [
     highlighted: true,
     translationNamespace: 'sidebar',
   },
-  {
-    key: 'nav_rules',
-    href: '/rules',
-    icon: Gavel,
-    highlighted: false,
-    translationNamespace: 'landing',
-  },
+  // {
+  //   key: 'nav_rules',
+  //   href: '/rules',
+  //   icon: Gavel,
+  //   highlighted: false,
+  //   translationNamespace: 'landing',
+  // },
   {
     key: 'nav_contact',
     href: '/contact-us',
