@@ -32,7 +32,7 @@ export function SiteFooter() {
               {t('footer_description')}
             </p>
             <p className='text-xs text-(--text-muted) leading-relaxed mb-4'>
-              زیرساخت پرداخت و اعتبارات سلامت‌محور بانکی کشور.
+              زیرساخت پرداخت و تسهیلات سلامت‌محور ایران.
             </p>
           </div>
 
