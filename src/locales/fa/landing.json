@@ -24,16 +24,16 @@
 
   "bullet_reward_label": "پاداش قطعی",
   "bullet_reward_value": "۱٪ از کل مبلغ پرونده درمان فرد معرفی شده",
-  "bullet_credit_label": "سقف پاداش نقدی معرفی هر فرد",
+  "bullet_credit_label": "سقف اعتبار هر فرد",
   "bullet_credit_value": "تا ۱۵۰ میلیون تومان فوری",
   "bullet_settlement_label": "تسویه حساب",
   "bullet_settlement_value": "واریز مستقیم به حساب شما",
 
   "hero_card_badge": "تسهیلات ویژه زنجیره سلامت",
-  "hero_card_credit_cap_label": "سقف پاداش نقدی معرفی هر فرد",
+  "hero_card_credit_cap_label": "سقف اعتبار هر فرد",
   "hero_card_credit_cap_value": "۱۵۰،۰۰۰،۰۰۰ تومان",
   "hero_card_no_guarantor": "بدون ضامن",
-  "hero_card_reward_badge": "پاداش نقدی معرف: ۱,۵۰۰,۰۰۰ تومان (واریز تضمین‌شده)",
+  "hero_card_reward_badge": "سقف پاداش نقدی به ازای هر معرفی: ۱,۵۰۰,۰۰۰ تومان (واریز تضمین‌شده)",
   "hero_card_cash_deposit": "واریز نقدی",
 
   "trust_title": "طرح ملی سلامت با پشتیبانی نهادهای بانکی و درمانی کشور",
