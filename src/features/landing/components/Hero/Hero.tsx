@@ -55,8 +55,12 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className='text-base sm:text-lg text-(--second-text-color) leading-relaxed max-w-2xl mb-8'>
+            <p className='text-base sm:text-lg text-(--second-text-color) leading-relaxed max-w-2xl mb-1'>
               {t('home:welcome_dentalit_referral_club')}
+            </p>
+
+            <p className='text-base sm:text-lg text-(--second-text-color) leading-relaxed max-w-2xl mb-8'>
+              {t('home:welcome_dentalit_referral_club_part2')}
             </p>
 
             <div className='flex flex-wrap items-center gap-4 mb-8'>

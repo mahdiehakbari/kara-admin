@@ -107,9 +107,9 @@ export const getPartners = (t: TFunction) => [
     name: t('trust_society_name'),
     desc: t('trust_society_desc'),
   },
-  {
-    icon: Network,
-    name: t('trust_network_name'),
-    desc: t('trust_network_desc'),
-  },
+  // {
+  //   icon: Network,
+  //   name: t('trust_network_name'),
+  //   desc: t('trust_network_desc'),
+  // },
 ];

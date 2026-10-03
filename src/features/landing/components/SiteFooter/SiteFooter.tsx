@@ -46,7 +46,7 @@ export function SiteFooter() {
                 href='https://dentalit.ir/'
                 className='hover:text-(--primary) transition-colors'
               >
-                وبسایت دنتالیت
+                وب سایت دنتالیت
               </Link>
               <Link
                 href='https://dentist.dentalit.ir/'
@@ -66,12 +66,12 @@ export function SiteFooter() {
               >
                 {t('footer_link_calculator')}
               </Link>
-              <Link
+              {/* <Link
                 href='/#rules'
                 className='hover:text-(--primary) transition-colors'
               >
                 {t('footer_link_rules')}
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -83,23 +83,34 @@ export function SiteFooter() {
             <div className='flex flex-col space-y-2.5 text-xs text-(--text-muted)'>
               <div className='flex items-center gap-2'>
                 <Headphones className='w-3.5 h-3.5 text-(--primary)' />
-                <span>{t('footer_contact_support')}</span>
+                <span> تلفن پشتیبانی باجت: </span> <a
+                  href='tel:02125961300'
+                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  ۰۲۱-۲۵۹۶۱۳۰۰
+                </a>
               </div>
-              <a
-                href='tel:90000644'
-                className='flex items-center gap-2 hover:text-(--primary)'
-              >
-                <ShieldCheck className='w-3.5 h-3.5 text-(--primary)' />
-                <span>{t('support_phone')}</span>
-              </a>
+
+              <div className='flex items-center gap-2'>
+                <Headphones className='w-3.5 h-3.5 text-(--primary)' />
+                <span> تلفن پشتیبانی دنتالیت: </span> <a
+                  href='tel:90000644'
+                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  <span>{t('support_phone')}</span>
+                </a>
+              </div>
+
               <div className='flex items-center gap-2'>
                 <Mail className='w-3.5 h-3.5 text-(--primary)' />
-                <span>{t('footer_contact_email')}</span>
+                <a
+                  href='mailto:info@dentalit.ir'
+                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  <span>{t('footer_contact_email')}</span>
+                </a>
               </div>
-              <div className='flex items-center gap-2'>
+              {/* <div className='flex items-center gap-2'>
                 <MapPin className='w-8 h-5 text-(--primary)' />
                 <span>{t('footer_contact_address')}</span>
-              </div>
+              </div> */}
             </div>
           </div>
 
