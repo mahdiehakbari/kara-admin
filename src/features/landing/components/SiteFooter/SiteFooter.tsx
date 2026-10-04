@@ -33,9 +33,6 @@ export function SiteFooter() {
             <p className='text-xs text-(--text-muted) leading-relaxed mb-4'>
               {t('footer_description')}
             </p>
-            <p className='text-xs text-(--text-muted) leading-relaxed mb-4'>
-              زیرساخت پرداخت و تسهیلات سلامت‌محور ایران.
-            </p>
           </div>
 
           {/* Quick links */}
@@ -46,12 +43,14 @@ export function SiteFooter() {
             <div className='flex flex-col space-y-2 text-xs text-(--text-muted)'>
               <Link
                 href='https://dentalit.ir/'
+                target='_blank'
                 className='hover:text-(--primary) transition-colors'
               >
                 وب سایت دنتالیت
               </Link>
               <Link
                 href='https://dentist.dentalit.ir/'
+                target='_blank'
                 className='hover:text-(--primary) transition-colors'
               >
                 پنل پزشکان دنتالیت
