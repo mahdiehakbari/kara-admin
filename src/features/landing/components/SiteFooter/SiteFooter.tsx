@@ -10,9 +10,11 @@ import {
   Headphones,
 } from 'lucide-react';
 import Link from 'next/link';
+import { toJalaali } from 'jalaali-js';
 
 export function SiteFooter() {
   const { t } = useTranslation('landing');
+  const currentYear = toJalaali(new Date()).jy;
 
   return (
     <footer className='bg-(--surface) border-t border-(--border-color)'>
@@ -83,18 +85,22 @@ export function SiteFooter() {
             <div className='flex flex-col space-y-2.5 text-xs text-(--text-muted)'>
               <div className='flex items-center gap-2'>
                 <Headphones className='w-3.5 h-3.5 text-(--primary)' />
-                <span> تلفن پشتیبانی باجت: </span> <a
+                <span> تلفن پشتیبانی باجت: </span>{' '}
+                <a
                   href='tel:02125961300'
-                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  className='flex items-center gap-2 hover:text-(--primary)'
+                >
                   ۰۲۱-۲۵۹۶۱۳۰۰
                 </a>
               </div>
 
               <div className='flex items-center gap-2'>
                 <Headphones className='w-3.5 h-3.5 text-(--primary)' />
-                <span> تلفن پشتیبانی دنتالیت: </span> <a
+                <span> تلفن پشتیبانی دنتالیت: </span>{' '}
+                <a
                   href='tel:90000644'
-                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  className='flex items-center gap-2 hover:text-(--primary)'
+                >
                   <span>{t('support_phone')}</span>
                 </a>
               </div>
@@ -103,7 +109,8 @@ export function SiteFooter() {
                 <Mail className='w-3.5 h-3.5 text-(--primary)' />
                 <a
                   href='mailto:info@dentalit.ir'
-                  className='flex items-center gap-2 hover:text-(--primary)'>
+                  className='flex items-center gap-2 hover:text-(--primary)'
+                >
                   <span>{t('footer_contact_email')}</span>
                 </a>
               </div>
@@ -137,7 +144,7 @@ export function SiteFooter() {
         </div>
 
         <div className='mt-10 pt-6 border-t border-(--border-color) flex flex-col sm:flex-row items-center justify-between text-xs text-(--text-muted) gap-3'>
-          <p>{t('footer_copyright')}</p>
+          <p>{t('footer_copyright', { year: currentYear })}</p>
           <p className='font-medium'>{t('footer_infra')}</p>
         </div>
       </div>

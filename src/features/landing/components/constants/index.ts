@@ -25,7 +25,7 @@ export const getRules = (t: TFunction) => [
     icon: Clock,
     badge: t('rule_deadline_badge'),
     title: t('home:thirty_day_golden_period'),
-    description: t('home:thirty_day_golden_period_description'),
+    description: 'home:thirty_day_golden_period_description',
     tone: 'bg-amber-50 text-amber-700',
   },
   {

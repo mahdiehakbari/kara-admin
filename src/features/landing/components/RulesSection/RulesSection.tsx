@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { getRules } from '../constants';
 
 export function RulesSection() {
@@ -46,8 +46,24 @@ export function RulesSection() {
             <h4 className='text-base font-bold text-(--text-black) mb-2'>
               {rule.title}
             </h4>
-            <p className='text-xs sm:text-sm text-(--second-text-color) leading-relaxed'>
-              {rule.description}
+            <p className='text-sm leading-relaxed'>
+              {rule.title === t('home:thirty_day_golden_period') ? (
+                <Trans
+                  i18nKey={rule.description}
+                  components={[
+                    <></>,
+                    <a
+                      key='dentists-link'
+                      href='https://dentalit.ir/listOfDentists'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='inline text-(--primary)  font-semibold'
+                    />,
+                  ]}
+                />
+              ) : (
+                rule.description
+              )}
             </p>
           </div>
         ))}

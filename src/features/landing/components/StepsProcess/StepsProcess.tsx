@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { getSteps } from '../constants';
 
 
@@ -61,7 +61,23 @@ export function StepsProcess() {
                 {step.title}
               </h3>
               <p className='text-sm text-(--second-text-color) leading-relaxed'>
-                {step.description}
+                {step.number === '۲' ? (
+                  <Trans
+                    i18nKey={step.description}
+                    components={[
+                      <></>,
+                      <a
+                        key='dentists-link'
+                        href='https://dentalit.ir/listOfDentists'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='inline text-(--primary)  font-semibold'
+                      />,
+                    ]}
+                  />
+                ) : (
+                  step.description
+                )}
               </p>
             </div>
           ))}

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, UserPlus, Headphones, LogOut } from 'lucide-react';
 import { Button } from '@/shareComponent';
@@ -20,7 +20,7 @@ export function PublicHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginFlowOpen, setIsLoginFlowOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-
+  const profileMenuRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -36,26 +36,41 @@ export function PublicHeader() {
     router.push('/');
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        profileMenuRef.current &&
+        !profileMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <header className='fixed top-0 inset-x-0 z-[100] bg-(--surface) border-b border-(--border-color) shadow-sm'>
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='h-20 flex items-center justify-between gap-4'>
           {/* Brand */}
-          <Link href='/' className='flex items-center gap-3.5 shrink-0'>
-            <div className='w-11 h-11 rounded-xl bg-(--light-primary) border border-(--primary-border)/30 flex items-center justify-center p-1.5 shadow-sm'>
-              <Image
-                src='/assets/icons/logo.png'
-                alt={t('brand_name')}
-                width={40}
-                height={40}
-                className='w-full h-full object-contain'
-              />
-            </div>
+          <Link href='/' className='flex items-center gap-2 shrink-0'>
+            <Image
+              src='/assets/icons/logo.png'
+              alt={t('brand_name')}
+              width={50}
+              height={50}
+              className='w-full h-full object-contain'
+            />
 
             <div className='hidden sm:flex flex-col text-right'>
-              <div className='flex items-center gap-2'>
-                <span className='text-xl font-black text-(--text-black) leading-tight tracking-tight'>
-                  {t('brand_name')}
+              <div className='flex items-center'>
+                <span className='text-sm w-[120px] font-black text-(--text-black) leading-tight tracking-tight'>
+                  باشگاه معرفین دنتالیت
                 </span>
 
                 {/* <span className='px-2 py-0.5 rounded-md text-[11px] bg-(--light-primary) text-(--primary) font-bold'>
@@ -137,7 +152,7 @@ export function PublicHeader() {
             </a>
 
             {isLoggedIn ? (
-              <div className='relative'>
+              <div ref={profileMenuRef} className='relative'>
                 <button
                   type='button'
                   onClick={() => setIsProfileMenuOpen((prev) => !prev)}
@@ -151,7 +166,7 @@ export function PublicHeader() {
                       alt={user?.fullName || t('cta_register_full')}
                       width={44}
                       height={44}
-                      className='w-full h-full object-cover'
+                      className='w-full h-full object-cover cursor-pointer'
                     />
                   </span>
                 </button>
