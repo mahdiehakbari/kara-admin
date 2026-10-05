@@ -16,7 +16,7 @@ export const guidData = [
     image: '/assets/dental-plane/2.jpg',
     text: (
       <>
-        از میان گزینه‌ها، بر روی <strong>اعتبار طب‌نو</strong> (اعتبار دریافت
+        از میان گزینه‌ها، بر روی <strong>اعتبار کالانو</strong> (اعتبار دریافت
         خدمات درمانی) بزنید.
       </>
     ),
@@ -27,7 +27,7 @@ export const guidData = [
     image: '/assets/dental-plane/3.jpg',
     text: (
       <>
-        در صفحه معرفی اعتبار طب‌نو، دکمه آبی‌رنگ <strong>درخواست اعتبار</strong>{' '}
+        در صفحه معرفی اعتبار کالانو، دکمه آبی‌رنگ <strong>درخواست اعتبار</strong>{' '}
         را انتخاب کنید.
       </>
     ),
