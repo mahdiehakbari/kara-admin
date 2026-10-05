@@ -184,7 +184,7 @@ export const DentalPlaneContent = () => {
               className='flex flex-col items-center text-center'
             >
               <p className='text-[14px] md:text-[15px] leading-8 font-bold text-(--primary) border border-dashed border(--primary) rounded-2xl px-2 bg-[#e3eaf6] mb-4'>
-                {item.title}
+                {item.step}
               </p>
 
               <div className='w-full flex justify-center'>
@@ -194,8 +194,10 @@ export const DentalPlaneContent = () => {
                   className='w-full max-w-70 object-contain border border-dashed border-(--primary) rounded-2xl'
                 />
               </div>
-
-              <p className='text-[14px] md:text-[15px] leading-8 font-normal text-(--text-muted) mt-4'>
+              <p className='text-[14px] md:text-[15px] leading-8 font-bold text-(--text-muted) mt-4'>
+                {item.title}
+              </p>
+              <p className='text-[14px] md:text-[15px] leading-8 font-normal text-(--text-muted) mt-1'>
                 {item.text}
               </p>
             </div>
