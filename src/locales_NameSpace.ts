@@ -7,6 +7,7 @@ export const localesNS = [
   'faq',
   'social_media',
   'landing',
+  'main',
 ] as const;
 export type LocaleNS = (typeof localesNS)[number];
 

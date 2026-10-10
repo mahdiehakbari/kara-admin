@@ -61,7 +61,7 @@ export function SupportBar() {
 
           <div className='flex flex-col'>
             <span className='text-(--text-muted) text-[13px]'>
-              تلفن پشتیبانی دنتالیت:
+              {t('main:support_phone')}
             </span>
             <div className='flex items-center gap-2'>
               <FiPhone className='text-(--primary-text) text-[16px]' />
@@ -116,8 +116,7 @@ export function SupportBar() {
             <span>{t('support_chat_cta')}</span>
           </a> 
     </div>
-      </div > */
-}
-    </section >
+      </div > */}
+    </section>
   );
 }

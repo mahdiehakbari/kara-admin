@@ -13,7 +13,7 @@ const ContactUs = () => {
     <div className=' flex flex-col items-center max-w-6xl mx-4 md:mx-auto mt-30'>
       <div className="bg-[url('/assets/icons/mapimg.png')] bg-cover bg-center h-96  w-full rounded-2xl mb-6"></div>
       <div className=' w-full bg-(--surface) border border-(--border-color) rounded-2xl p-6 transition-colors my-6'>
-        <div className='flex items-center w-full text-right gap-3 mb-6'>
+        <div className='flex items-center w-  full text-right gap-3 mb-6'>
           <FaMapMarkerAlt className='text-primary text-xl' />
           <span>
             آدرس: تهران - شهرک قدس (غرب) - ایوانک - خیابان شجریان شمالی (فلامک)
@@ -38,12 +38,10 @@ const ContactUs = () => {
         <div className='flex justify-between'>
           <div>
             <h2 className='text-(--text-black) font-bold text-[17px] mb-2'>
-              پشتیبانی دریافت و فعال‌سازی اعتبار (اپلیکیشن باجت):
+              {t('main:receipt_activation')}
             </h2>
             <p className='text-(--text-muted)  text-[15px] leading-relaxed  mb-1'>
-              اگر در مراحل اعتبارسنجی، افتتاح حساب، بارگذاری مدارک یا تخصیص
-              اعتبار در اپلیکیشن باجت با مشکلی مواجه شده‌اید، با پشتیبانی باجت
-              تماس بگیرید:
+              {t('main:problems_during_validation')}
             </p>
           </div>
           <div className='flex items-center gap-2 mb-2'>
@@ -71,18 +69,17 @@ const ContactUs = () => {
             {' '}
             <h2 className='text-(--text-black) font-bold text-[17px] mb-2'>
               {' '}
-              پشتیبانی خدمات و سامانه دنتالیت:
+              {t('main:service_system_support')}
             </h2>
             <p className='text-(--text-muted) font-bold text-[13px] leading-relaxed'>
               {' '}
-              برای سوالات مربوط به کیف پول دنتالیت، انتخاب پزشکان، ثبت تراکنش در
-              مطب و شرایط تسویه حساب با پزشکان و کلینیک ها، در خدمت شما هستیم.
+              {t('main:questions_dentalit_wallet')}
             </p>
           </div>
 
           <div className='flex flex-col'>
             <span className='text-(--text-muted) text-[13px]'>
-              تلفن پشتیبانی دنتالیت:
+              {t('main:support_phone')}
             </span>
             <div className='flex items-center gap-2'>
               <FiPhone className='text-(--primary-text) text-[16px]' />

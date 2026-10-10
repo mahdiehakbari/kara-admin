@@ -95,7 +95,7 @@ export function SiteFooter() {
 
               <div className='flex items-center gap-2'>
                 <Headphones className='w-3.5 h-3.5 text-(--primary)' />
-                <span> تلفن پشتیبانی دنتالیت: </span>{' '}
+                <span> {t('main:support_phone')} </span>{' '}
                 <a
                   href='tel:90000644'
                   className='flex items-center gap-2 hover:text-(--primary)'

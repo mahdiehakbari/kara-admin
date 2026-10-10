@@ -282,6 +282,15 @@ export const CustomerIntroductionForm = ({
                     Dentalit.ir
                   </Link>
                 </p>
+                <p>
+                  باشگاه معرفین دنتالیت:{' '}
+                  <Link
+                    href='https://invite.dentalit.ir/'
+                    className='text-(--primary) underline'
+                  >
+                    Invite.Dentalit.ir
+                  </Link>
+                </p>
               </div>
             </div>
           </div>
